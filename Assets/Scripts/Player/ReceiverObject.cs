@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class RecieverObject : MonoBehaviour
+    public class ReceiverObject : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()
