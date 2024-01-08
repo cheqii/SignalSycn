@@ -19,15 +19,8 @@ namespace Player
 
 
         [Header("Pocket Check")]
-        [SerializeField] private bool isPocket;
-        public bool IsPocket
-        {
-            get => isPocket;
-            set => isPocket = value;
-        }
-
-        public bool foundReceiver;
-        [FormerlySerializedAs("switchControl")] public bool pocketControl;
+        public bool foundReceiver; 
+        public bool pocketControl;
 
         [Header("For Checking Switch Receiver")]
         public int switchCount = 0;
@@ -37,11 +30,9 @@ namespace Player
         
         void Start()
         {
-            pocketControl = true;
-            
             isPocket = true;
-            
             onGround = true;
+            
             rb = GetComponent<Rigidbody2D>();
             
             signalFieldCol = GetComponentInChildren<CircleCollider2D>();
@@ -82,6 +73,10 @@ namespace Player
                 receiverList.Remove(other.gameObject.GetComponent<ReceiverObject>());
                 other.GetComponent<SpriteRenderer>().color = Color.white;
 
+                gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 76, 76 ,255);
+                pocketControl = false;
+                GameController.Instance.isPocket = true;
+                
                 switchCount = 0;
                 tempCount = 0;
             }
@@ -91,7 +86,7 @@ namespace Player
 
         public override void Move()
         {
-            if(isPocket) base.Move();
+            if(GameController.Instance.isPocket) base.Move();
         }
 
         void IncreaseFieldRadius(int value)
@@ -101,10 +96,9 @@ namespace Player
 
         void SwitchControlToReceiver()
         {
-            if (foundReceiver && isPocket)
+            if (foundReceiver)
             {
                 var pocketColor = gameObject.GetComponent<SpriteRenderer>();
-                // var receiverSprite = receiverList[j].GetComponent<SpriteRenderer>();
                 var triggerColor = new Color32(232, 255, 67, 255);
                 var controlColor = new Color32(255, 76, 76 ,255);
                 
@@ -114,26 +108,38 @@ namespace Player
 
                     if (!pocketControl)
                     {
-                        Debug.Log("checkkkk");
+                        Debug.Log("Check Return to Pocket Signal");
+                        GameController.Instance.isPocket = true;
+                        GameController.Instance.isReceiver = false;
+                        receiverList[tempCount].GetComponent<ReceiverObject>().isSelected = false;
                         pocketColor.color = controlColor;
-                        receiverList[tempCount].GetComponent<SpriteRenderer>().color = triggerColor;
+                        try
+                        {
+                            receiverList[tempCount].GetComponent<SpriteRenderer>().color = triggerColor;
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.Log(e.Message);
+                        }
                         pocketControl = true;
                     }
                     else if (switchCount < receiverList.Count && pocketControl)
                     {
                         Debug.Log("Switch Control to Receiver");
+                        GameController.Instance.isPocket = false;
+                        GameController.Instance.isReceiver = true;
                         receiverList[tempCount].GetComponent<SpriteRenderer>().color = triggerColor;
                         receiverList[switchCount].GetComponent<SpriteRenderer>().color = controlColor;
                         pocketColor.color = Color.white;
 
-                        receiverList[switchCount].GetComponent<ReceiverObject>().alreadySwitch = true;
+                        receiverList[switchCount].GetComponent<ReceiverObject>().isSelected = true;
+                        receiverList[tempCount].GetComponent<ReceiverObject>().isSelected = false;
                         tempCount = switchCount;
                         switchCount++;
                     }
                     
                     if (switchCount >= receiverList.Count)
                     {
-                        Debug.Log("where is here");
                         switchCount = 0;
                         pocketControl = false;
                     }

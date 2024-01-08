@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReceiver: 0
-  alreadySwitch: 0
+  isSelected: 0
 --- !u!61 &879259700
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -857,7 +857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReceiver: 0
-  alreadySwitch: 0
+  isSelected: 0
 --- !u!61 &1450778899
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReceiver: 0
-  alreadySwitch: 0
+  isSelected: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

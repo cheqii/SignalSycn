@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -8,10 +9,16 @@ namespace Player
 
         #region -Declared Variables-
 
-        
+
         [SerializeField] private bool isReceiver;
 
-        public bool alreadySwitch;
+        public bool IsReceiver
+        {
+            get => isReceiver;
+            set => isReceiver = value;
+        }
+
+        [FormerlySerializedAs("alreadySwitch")] public bool isSelected;
 
         #endregion
         
@@ -46,7 +53,7 @@ namespace Player
         {
             if (other.CompareTag("SignalField"))
             {
-                alreadySwitch = false;
+                isSelected = false;
             }
         }
 
