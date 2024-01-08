@@ -30,7 +30,6 @@ namespace Player
         
         void Start()
         {
-            isPocket = true;
             onGround = true;
             
             rb = GetComponent<Rigidbody2D>();
