@@ -4,21 +4,12 @@ using UnityEngine.Serialization;
 
 namespace Player
 {
-    public class ReceiverObject : MonoBehaviour
+    public class ReceiverObject : Signal
     {
 
         #region -Declared Variables-
-
-
-        [SerializeField] private bool isReceiver;
-
-        public bool IsReceiver
-        {
-            get => isReceiver;
-            set => isReceiver = value;
-        }
-
-        [FormerlySerializedAs("alreadySwitch")] public bool isSelected;
+        
+        public bool isSelected;
 
         #endregion
         
@@ -27,25 +18,20 @@ namespace Player
         // Start is called before the first frame update
         void Start()
         {
-        
+            rb = GetComponent<Rigidbody2D>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            
+            Move();
         }
-
-        private void OnTriggerEnter2D(Collider2D other)
+        
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.CompareTag("SignalField"))
+            if (other.gameObject.CompareTag("Ground"))
             {
-                // if (alreadySwitch)
-                // {
-                //     Debug.Log("Already Switch");
-                //     var sprite = gameObject.GetComponent<SpriteRenderer>();
-                //     sprite.color = new Color32(232, 255, 67, 255);
-                // }
+                onGround = true;
             }
         }
 
@@ -58,5 +44,10 @@ namespace Player
         }
 
         #endregion
+
+        public override void Move()
+        {
+            if(GameController.Instance.isReceiver && isSelected) base.Move();
+        }
     }
 }

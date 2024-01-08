@@ -25,6 +25,9 @@ namespace Player
         [Header("For Checking Switch Receiver")]
         public int switchCount = 0;
         public int tempCount = 2;
+
+
+        public bool selectedReceiver;
         
         #endregion
         
@@ -57,10 +60,12 @@ namespace Player
         {
             if (other.CompareTag("Receiver"))
             {
+                Debug.Log("Trigger Receiver");
                 foundReceiver = true;
+            
                 receiverList.Add(other.gameObject.GetComponent<ReceiverObject>());
                 var sprite = other.GetComponent<SpriteRenderer>();
-
+            
                 sprite.color = new Color32(232, 255, 67, 255);
             }
         }
@@ -71,7 +76,8 @@ namespace Player
             {
                 receiverList.Remove(other.gameObject.GetComponent<ReceiverObject>());
                 other.GetComponent<SpriteRenderer>().color = Color.white;
-
+            
+                if(pocketControl) return;
                 gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 76, 76 ,255);
                 pocketControl = false;
                 GameController.Instance.isPocket = true;
@@ -120,6 +126,7 @@ namespace Player
                         {
                             Debug.Log(e.Message);
                         }
+
                         pocketControl = true;
                     }
                     else if (switchCount < receiverList.Count && pocketControl)
@@ -131,12 +138,12 @@ namespace Player
                         receiverList[switchCount].GetComponent<SpriteRenderer>().color = controlColor;
                         pocketColor.color = Color.white;
 
-                        receiverList[switchCount].GetComponent<ReceiverObject>().isSelected = true;
                         receiverList[tempCount].GetComponent<ReceiverObject>().isSelected = false;
+                        receiverList[switchCount].GetComponent<ReceiverObject>().isSelected = true;
+
                         tempCount = switchCount;
                         switchCount++;
                     }
-                    
                     if (switchCount >= receiverList.Count)
                     {
                         switchCount = 0;

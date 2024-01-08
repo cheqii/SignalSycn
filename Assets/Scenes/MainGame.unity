@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 678236547}
   m_Layer: 0
   m_Name: Pocket
-  m_TagString: Untagged
+  m_TagString: PocketSignal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -559,7 +559,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &678236545
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -646,11 +646,11 @@ MonoBehaviour:
   signalRange: 5
   receiverList: []
   receiverDist: []
-  isPocket: 0
   foundReceiver: 0
   pocketControl: 0
   switchCount: 0
-  tempCount: 2
+  tempCount: 0
+  selectedReceiver: 0
 --- !u!1 &879259698
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +683,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e79a6ed09d6184ebc7e4a3c914a18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isReceiver: 0
+  speed: 8
+  jumpForce: 8
+  onGround: 0
   isSelected: 0
 --- !u!61 &879259700
 BoxCollider2D:
@@ -756,7 +758,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &879259702
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -856,7 +858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e79a6ed09d6184ebc7e4a3c914a18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isReceiver: 0
+  speed: 8
+  jumpForce: 8
+  onGround: 0
   isSelected: 0
 --- !u!61 &1450778899
 BoxCollider2D:
@@ -929,7 +933,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1450778901
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1246,7 +1250,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &2075797831
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1326,7 +1330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e79a6ed09d6184ebc7e4a3c914a18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isReceiver: 0
+  speed: 8
+  jumpForce: 8
+  onGround: 0
   isSelected: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

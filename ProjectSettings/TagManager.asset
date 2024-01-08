@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - SignalField
   - Receiver
+  - PocketSignal
   layers:
   - Default
   - TransparentFX

@@ -33,6 +33,8 @@ namespace Player
                     onGround = false;
                 }
             }
+            
+            transform.rotation = Quaternion.identity;
         }
     }
 }
