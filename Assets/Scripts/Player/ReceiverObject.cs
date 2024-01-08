@@ -8,8 +8,12 @@ namespace Player
     {
 
         #region -Declared Variables-
+
+        public ReceiverData receiverData;
         
         public bool isSelected;
+
+        private PocketSignal pocket;
 
         #endregion
         
@@ -19,6 +23,8 @@ namespace Player
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+
+            pocket = FindObjectOfType<PocketSignal>();
         }
 
         // Update is called once per frame
@@ -40,6 +46,9 @@ namespace Player
             if (other.CompareTag("SignalField"))
             {
                 isSelected = false;
+                pocket.pocketControl = false;
+                GameController.Instance.isPocket = true;
+                pocket.GetComponent<SpriteRenderer>().color = new Color32(255, 76, 76 ,255);
             }
         }
 
