@@ -9,8 +9,8 @@ namespace Player
 
         protected Rigidbody2D rb;
         
-        [SerializeField] protected float speed = 5f;
-        [SerializeField] protected float jumpForce = 2f;
+        [SerializeField] protected float speed;
+        [SerializeField] protected float jumpForce;
 
         [SerializeField] protected bool onGround;
 
