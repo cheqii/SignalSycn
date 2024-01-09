@@ -14,6 +14,22 @@ namespace Player
 
         [SerializeField] protected bool onGround;
 
+        [SerializeField] protected Sprite colorSprite;
+        
+        public Sprite ColorSprite
+        {
+            get => colorSprite;
+            set => colorSprite = value;
+        }
+        
+        [SerializeField] protected Sprite whiteSprite;
+        
+        public Sprite WhiteSprite
+        {
+            get => whiteSprite;
+            set => whiteSprite = value;
+        }
+        
         [Header("Color Pick")]
         [SerializeField] protected Color32 inFieldColor;
         [SerializeField] protected Color32 controlColor;
@@ -28,6 +44,9 @@ namespace Player
             // calculate movement direction
             Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
+            if (horizontalInput == -1) gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            if (horizontalInput == 1) gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            
             transform.Translate(movement * speed * Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.Space))

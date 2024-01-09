@@ -10,7 +10,7 @@ namespace Player
         #region -Declared Variables-
 
         public ReceiverData receiverData;
-        
+
         public bool isSelected;
 
         private PocketSignal pocket;
@@ -47,6 +47,7 @@ namespace Player
                 if (!isSelected) // check if receiver stay in field its will be yellow!
                 {
                     gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                 }
 
                 // if have another receiver exit field but selected receiver is still in field

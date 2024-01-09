@@ -67,6 +67,7 @@ namespace Player
                 var sprite = other.GetComponent<SpriteRenderer>();
 
                 sprite.color = inFieldColor;
+                // sprite.sprite = other.GetComponent<ReceiverObject>().WhiteSprite;
             }
         }
 
@@ -76,6 +77,7 @@ namespace Player
             {
                 receiverList.Remove(other.gameObject.GetComponent<ReceiverObject>());
                 other.GetComponent<SpriteRenderer>().color = normalColor;
+                // other.GetComponent<SpriteRenderer>().sprite = other.GetComponent<ReceiverObject>().WhiteSprite;
 
                 gameObject.GetComponent<SpriteRenderer>().color = controlColor;
                 GameController.Instance.isPocket = true;
@@ -116,8 +118,15 @@ namespace Player
                                 GameController.Instance.isPocket = false;
                                 GameController.Instance.isReceiver = true;
                                 receiverList[tempCount].GetComponent<SpriteRenderer>().color = inFieldColor;
-                                receiverList[switchCount].GetComponent<SpriteRenderer>().color = controlColor;
-                                pocketColor.color = Color.white;
+                                receiverList[tempCount].GetComponent<SpriteRenderer>().sprite = 
+                                    receiverList[tempCount].GetComponent<ReceiverObject>().WhiteSprite;
+                                receiverList[switchCount].GetComponent<SpriteRenderer>().color = normalColor;
+                                receiverList[switchCount].GetComponent<SpriteRenderer>().sprite = 
+                                    receiverList[switchCount].GetComponent<ReceiverObject>().ColorSprite;
+                                
+                                Debug.Log(receiverList[switchCount].GetComponent<SpriteRenderer>().sprite = receiverList[switchCount].GetComponent<ReceiverObject>().ColorSprite);
+
+                                pocketColor.color = normalColor;
 
                                 receiverList[tempCount].GetComponent<ReceiverObject>().isSelected = false;
                                 receiverList[switchCount].GetComponent<ReceiverObject>().isSelected = true;
@@ -146,7 +155,8 @@ namespace Player
                             pocketColor.color = controlColor;
                             try
                             {
-                                receiverList[tempCount].GetComponent<SpriteRenderer>().color = inFieldColor;
+                                receiverList[tempCount].GetComponent<SpriteRenderer>().sprite = 
+                                    receiverList[tempCount].GetComponent<ReceiverObject>().WhiteSprite;
                             }
                             catch (Exception e)
                             {

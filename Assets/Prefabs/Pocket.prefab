@@ -175,6 +175,15 @@ MonoBehaviour:
   speed: 5
   jumpForce: 2
   onGround: 0
+  inFieldColor:
+    serializedVersion: 2
+    rgba: 4282580967
+  controlColor:
+    serializedVersion: 2
+    rgba: 4283190527
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
   signalRange: 5
   receiverList: []
   receiverDist: []
@@ -182,7 +191,6 @@ MonoBehaviour:
   pocketControl: 0
   switchCount: 0
   tempCount: 0
-  selectedReceiver: 0
 --- !u!1 &7927121346150436494
 GameObject:
   m_ObjectHideFlags: 0
