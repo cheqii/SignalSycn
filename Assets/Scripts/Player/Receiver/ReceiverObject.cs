@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -73,11 +74,14 @@ namespace Player
                     if (!GameController.Instance.isReceiver) pocket.GetComponent<SpriteRenderer>().color = controlColor;
                 }
                 
-                if(!isSelected && !pocket.pocketControl)
+                if(!isSelected && !pocket.pocketControl || !isSelected)
                 {
                     gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
                     gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                 }
+                
+               
+                // transform.rotation = Quaternion.identity;
             }
         }
 

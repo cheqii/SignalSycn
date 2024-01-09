@@ -15,6 +15,8 @@ namespace Player
         [SerializeField] protected bool onGround;
 
         [SerializeField] protected Sprite colorSprite;
+
+        public bool isLeft;
         
         public Sprite ColorSprite
         {
@@ -34,30 +36,35 @@ namespace Player
         [SerializeField] protected Color32 inFieldColor;
         [SerializeField] protected Color32 controlColor;
         [SerializeField] protected Color32 normalColor;
+
+        public bool facingRight;
         
         #endregion
+
+        private void Start()
+        {
+            
+        }
 
         public virtual void Move()
         {
             float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-            // calculate movement direction
             Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
             if (horizontalInput == -1)
             {
-                // gameObject.GetComponent<Transform>().transform.Rotate(0, -180, 0);
                 gameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
-
+            
             if (horizontalInput == 1)
             {
                 gameObject.GetComponent<SpriteRenderer>().flipX = false;
             }
-            
+
             transform.Translate(movement * speed * Time.deltaTime);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
             {
                 if (onGround)
                 {
@@ -66,7 +73,9 @@ namespace Player
                 }
             }
             
-            transform.rotation = Quaternion.identity;
+            // transform.rotation = Quaternion.identity;
         }
+        
+        
     }
 }

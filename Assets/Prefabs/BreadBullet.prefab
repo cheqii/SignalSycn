@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7729478729680840397}
   - component: {fileID: 8239840134182013853}
   - component: {fileID: 2348531370867059977}
+  - component: {fileID: 6380118771130741205}
   m_Layer: 0
   m_Name: BreadBullet
   m_TagString: Untagged
@@ -158,3 +159,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6380118771130741205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442333567125812896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22ecff1021c8f22479dd69e585c70933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletForce: 10
