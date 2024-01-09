@@ -62,6 +62,7 @@ namespace Player
             {
                 Debug.Log("Trigger Receiver");
                 foundReceiver = true;
+                pocketControl = true;
                 
                 receiverList.Add(other.gameObject.GetComponent<ReceiverObject>());
                 var sprite = other.GetComponent<SpriteRenderer>();
@@ -150,8 +151,14 @@ namespace Player
                             
                             GameController.Instance.isPocket = true;
                             GameController.Instance.isReceiver = false;
-
-                            receiverList[tempCount].GetComponent<ReceiverObject>().isSelected = false;
+                            try
+                            {
+                                receiverList[tempCount].GetComponent<ReceiverObject>().isSelected = false;
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.Log(e.Message);
+                            }
                             pocketColor.color = controlColor;
                             try
                             {

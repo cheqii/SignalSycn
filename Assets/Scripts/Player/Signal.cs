@@ -16,8 +16,6 @@ namespace Player
 
         [SerializeField] protected Sprite colorSprite;
 
-        public bool isLeft;
-        
         public Sprite ColorSprite
         {
             get => colorSprite;
@@ -36,8 +34,6 @@ namespace Player
         [SerializeField] protected Color32 inFieldColor;
         [SerializeField] protected Color32 controlColor;
         [SerializeField] protected Color32 normalColor;
-
-        public bool facingRight;
         
         #endregion
 
@@ -73,7 +69,7 @@ namespace Player
                 }
             }
             
-            // transform.rotation = Quaternion.identity;
+            transform.rotation = Quaternion.identity;
         }
         
         

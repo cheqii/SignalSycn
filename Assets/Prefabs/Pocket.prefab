@@ -173,8 +173,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 2
+  jumpForce: 4
   onGround: 0
+  colorSprite: {fileID: 0}
+  whiteSprite: {fileID: 0}
   inFieldColor:
     serializedVersion: 2
     rgba: 4282580967

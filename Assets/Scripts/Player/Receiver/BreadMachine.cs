@@ -11,8 +11,6 @@ public class BreadMachine : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private GameObject breadBullet;
 
-    [SerializeField] private bool isShoot;
-    
     // public UnityEvent receiverEvent;
 
     // Start is called before the first frame update
@@ -38,7 +36,7 @@ public class BreadMachine : MonoBehaviour
                 
                 var bread = Instantiate(breadBullet, shootPoint.position, shootPoint.rotation);
                 
-                Destroy(bread, 5f);
+                Destroy(bread, 1f);
             }
         }
     }

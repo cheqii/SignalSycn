@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7392091819905010717
+--- !u!1 &518200857811690479
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 94300197286319063}
+  - component: {fileID: 9160241352737229691}
   m_Layer: 0
-  m_Name: BulletPoint
+  m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &94300197286319063
+--- !u!4 &9160241352737229691
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7392091819905010717}
+  m_GameObject: {fileID: 518200857811690479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.637, y: -0.101, z: 0}
+  m_LocalPosition: {x: 0, y: 1.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6304262374589399592}
   - component: {fileID: 6300447966014699916}
   - component: {fileID: 146657121154566132}
+  - component: {fileID: 5124957846402255649}
   m_Layer: 0
   m_Name: BreadMachine
   m_TagString: Receiver
@@ -64,7 +65,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 94300197286319063}
+  - {fileID: 9160241352737229691}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2141276477369586830
@@ -189,7 +190,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3, y: 1.2}
   m_EdgeRadius: 0
 --- !u!114 &146657121154566132
 MonoBehaviour:
@@ -204,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  jumpForce: 8
+  jumpForce: 7
   onGround: 0
   colorSprite: {fileID: 21300000, guid: b586b1343d02b6342978d3bf9d9bb2c3, type: 3}
   whiteSprite: {fileID: 21300000, guid: 20cb8e39113aa5645839487cdaf5cb8b, type: 3}
@@ -219,3 +220,17 @@ MonoBehaviour:
     rgba: 4294967295
   receiverData: {fileID: 11400000, guid: 8a487a76f194ebb4d9d9c10c753ba7a1, type: 2}
   isSelected: 0
+--- !u!114 &5124957846402255649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8482054005846662826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b0f989a3795bf49b4ba7d32ed50dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPoint: {fileID: 0}
+  breadBullet: {fileID: 5442333567125812896, guid: e7df69c79e34365478175bc4b86b914f, type: 3}
