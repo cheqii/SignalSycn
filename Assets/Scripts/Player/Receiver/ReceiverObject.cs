@@ -72,6 +72,12 @@ namespace Player
                     GameController.Instance.isPocket = true;
                     if (!GameController.Instance.isReceiver) pocket.GetComponent<SpriteRenderer>().color = controlColor;
                 }
+                
+                if(!isSelected && !pocket.pocketControl)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
+                }
             }
         }
 

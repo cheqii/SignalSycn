@@ -44,8 +44,16 @@ namespace Player
             // calculate movement direction
             Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
-            if (horizontalInput == -1) gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            if (horizontalInput == 1) gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            if (horizontalInput == -1)
+            {
+                // gameObject.GetComponent<Transform>().transform.Rotate(0, -180, 0);
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+
+            if (horizontalInput == 1)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
             
             transform.Translate(movement * speed * Time.deltaTime);
 
