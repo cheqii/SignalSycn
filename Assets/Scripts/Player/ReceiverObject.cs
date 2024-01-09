@@ -35,9 +35,27 @@ namespace Player
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ground"))
+            if (other.gameObject.CompareTag("Ground")) onGround = true;
+
+            if (other.gameObject.CompareTag("PocketSignal")) onGround = true;
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag("SignalField"))
             {
-                onGround = true;
+                if (!isSelected) // check if receiver stay in field its will be yellow!
+                {
+                    gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
+                }
+
+                // if have another receiver exit field but selected receiver is still in field
+                if (isSelected && GameController.Instance.isReceiver || isSelected && !GameController.Instance.isReceiver)
+                {
+                    GameController.Instance.isPocket = false;
+                    GameController.Instance.isReceiver = true;
+                    pocket.GetComponent<SpriteRenderer>().color = normalColor;
+                }
             }
         }
 
@@ -46,9 +64,13 @@ namespace Player
             if (other.CompareTag("SignalField"))
             {
                 isSelected = false;
-                pocket.pocketControl = false;
-                GameController.Instance.isPocket = true;
-                pocket.GetComponent<SpriteRenderer>().color = new Color32(255, 76, 76 ,255);
+                pocket.pocketControl = true;
+                
+                if (pocket.pocketControl) // left receiver in field is exit from fields
+                {
+                    GameController.Instance.isPocket = true;
+                    if (!GameController.Instance.isReceiver) pocket.GetComponent<SpriteRenderer>().color = controlColor;
+                }
             }
         }
 

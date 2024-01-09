@@ -14,6 +14,11 @@ namespace Player
 
         [SerializeField] protected bool onGround;
 
+        [Header("Color Pick")]
+        [SerializeField] protected Color32 inFieldColor;
+        [SerializeField] protected Color32 controlColor;
+        [SerializeField] protected Color32 normalColor;
+        
         #endregion
 
         public virtual void Move()
