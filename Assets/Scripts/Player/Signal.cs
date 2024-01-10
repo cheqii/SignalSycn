@@ -56,7 +56,7 @@ namespace Player
 
             transform.Translate(movement * speed * Time.deltaTime);
 
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 if (onGround)
                 {
