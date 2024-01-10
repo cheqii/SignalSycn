@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,23 +8,24 @@ public class HoldableObject : MonoBehaviour
     [SerializeField] private GameObject droneObj;
 
     [SerializeField] private bool canRelease;
+
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        HoldThings();
+        HoldObject();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("DroneClaw"))
         {
-            Debug.Log($"Drone can hold {gameObject.name}");
             canHold = true;
             droneObj = other.gameObject;
         }
@@ -34,26 +36,23 @@ public class HoldableObject : MonoBehaviour
         if (other.CompareTag("DroneClaw")) canHold = false;
     }
 
-    void HoldThings()
+    void HoldObject()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var rigidbody = gameObject.GetComponent<Rigidbody2D>();
-
             if (canHold)
             {
                 if (!canRelease)
                 {
                     canRelease = true;
-                    rigidbody.isKinematic = true;
-                    this.gameObject.transform.SetParent(droneObj.transform);
+                    rb.isKinematic = true;
+                    gameObject.transform.SetParent(droneObj.transform);
                 }
-
-                else if (canRelease)
+                else
                 {
                     canRelease = false;
-                    rigidbody.isKinematic = false;
-                    this.gameObject.transform.SetParent(null);
+                    rb.isKinematic = false;
+                    gameObject.transform.SetParent(null);
                 }
             }
         }
