@@ -48,12 +48,12 @@ namespace Player
 
             Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
-            if (horizontalInput == -1)
+            if (horizontalInput < 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
             
-            if (horizontalInput == 1)
+            if (horizontalInput > 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().flipX = false;
             }

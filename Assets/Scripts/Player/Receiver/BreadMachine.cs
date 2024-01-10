@@ -4,7 +4,7 @@ using Player;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BreadMachine : MonoBehaviour
+public class BreadMachine : ReceiverObject
 {
     private ReceiverObject receiver;
 
@@ -16,6 +16,9 @@ public class BreadMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        pocket = FindObjectOfType<PocketSignal>();
+        
         receiver = GetComponent<ReceiverObject>();
         shootPoint = transform.GetChild(0).GetComponent<Transform>();
     }
@@ -23,12 +26,18 @@ public class BreadMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Move();
         ShootBread();
+    }
+
+    public override void Move()
+    {
+        if(GameController.Instance.isReceiver && isSelected) base.Move();
     }
 
     void ShootBread()
     {
-        if (receiver.isSelected)
+        if (isSelected)
         {
             if (Input.GetMouseButtonDown(0))
             {

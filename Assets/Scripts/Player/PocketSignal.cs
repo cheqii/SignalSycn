@@ -63,11 +63,12 @@ namespace Player
                 Debug.Log("Trigger Receiver");
                 foundReceiver = true;
                 pocketControl = true;
-                
-                receiverList.Add(other.gameObject.GetComponent<ReceiverObject>());
-                var sprite = other.GetComponent<SpriteRenderer>();
 
-                sprite.color = inFieldColor;
+                var receiver = other.GetComponent<ReceiverObject>();
+                receiverList.Add(receiver);
+                var sprite = other.GetComponent<SpriteRenderer>();
+                
+                if(!receiver.isSelected) sprite.color = inFieldColor;
                 // sprite.sprite = other.GetComponent<ReceiverObject>().WhiteSprite;
             }
         }
@@ -118,14 +119,13 @@ namespace Player
                                 Debug.Log("Switch Control to Receiver");
                                 GameController.Instance.isPocket = false;
                                 GameController.Instance.isReceiver = true;
+                                
                                 receiverList[tempCount].GetComponent<SpriteRenderer>().color = inFieldColor;
                                 receiverList[tempCount].GetComponent<SpriteRenderer>().sprite = 
                                     receiverList[tempCount].GetComponent<ReceiverObject>().WhiteSprite;
                                 receiverList[switchCount].GetComponent<SpriteRenderer>().color = normalColor;
                                 receiverList[switchCount].GetComponent<SpriteRenderer>().sprite = 
                                     receiverList[switchCount].GetComponent<ReceiverObject>().ColorSprite;
-                                
-                                Debug.Log(receiverList[switchCount].GetComponent<SpriteRenderer>().sprite = receiverList[switchCount].GetComponent<ReceiverObject>().ColorSprite);
 
                                 pocketColor.color = normalColor;
 

@@ -14,7 +14,7 @@ namespace Player
 
         public bool isSelected;
 
-        private PocketSignal pocket;
+        protected PocketSignal pocket;
 
         #endregion
         
@@ -28,12 +28,6 @@ namespace Player
             pocket = FindObjectOfType<PocketSignal>();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            Move();
-        }
-        
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Ground")) onGround = true;
@@ -47,6 +41,7 @@ namespace Player
             {
                 if (!isSelected) // check if receiver stay in field its will be yellow!
                 {
+                    // Debug.Log("is not select brooo please yellow");
                     gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
                     gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                 }
@@ -66,7 +61,7 @@ namespace Player
             if (other.CompareTag("SignalField"))
             {
                 isSelected = false;
-                pocket.pocketControl = true;
+                // pocket.pocketControl = true;
                 
                 if (pocket.pocketControl) // left receiver in field is exit from fields
                 {
@@ -85,17 +80,10 @@ namespace Player
                     gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
                     gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                 }
-
-
-                // transform.rotation = Quaternion.identity;
+                
             }
         }
 
         #endregion
-
-        public override void Move()
-        {
-            if(GameController.Instance.isReceiver && isSelected) base.Move();
-        }
     }
 }
