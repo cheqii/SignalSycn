@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Drone : ReceiverObject
 {
+    [SerializeField] private bool isHolding;
+
+    public bool IsHolding
+    {
+        get => isHolding;
+        set => isHolding = value;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +37,35 @@ public class Drone : ReceiverObject
         if (other.gameObject.CompareTag("Ground") 
             || other.gameObject.CompareTag("PocketSignal") 
             || other.gameObject.CompareTag("Receiver"))  onGround = false;
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("SignalField"))
+        {
+            isSelected = false;
+            isHolding = false;
+            // pocket.pocketControl = true;
+                
+            if (pocket.pocketControl) // left receiver in field is exit from fields
+            {
+                GameController.Instance.isPocket = true;
+                if (!GameController.Instance.isReceiver) pocket.GetComponent<SpriteRenderer>().color = controlColor;
+            }
+
+            if (!isSelected)
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = normalColor;
+                gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
+            }
+
+            if(!isSelected && !pocket.pocketControl)
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
+                gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
+            }
+                
+        }
     }
 
     public override void Move()

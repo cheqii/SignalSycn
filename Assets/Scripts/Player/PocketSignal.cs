@@ -107,7 +107,30 @@ namespace Player
             if (foundReceiver)
             {
                 var pocketColor = gameObject.GetComponent<SpriteRenderer>();
-
+                
+                foreach (var list in receiverList) // check drone is holding here if not hold then can switch a receiver
+                {
+                    if (list != null)
+                    {
+                        if (list.GetComponent<Drone>() == null)
+                        {
+                            break;
+                        }
+                        if (list.GetComponent<Drone>().IsHolding )
+                        {
+                            return; // if drone is holding then can't switch a receiver
+                        }
+                        // if (!list.GetComponent<Drone>().IsHolding && !list.GetComponent<Drone>().isSelected)
+                        // {
+                        //     break;
+                        // }
+                        if (list.GetComponent<ReceiverObject>())
+                        {
+                            break; // check if object is not drone then break a loop and can switch to another receiver
+                        }
+                    }
+                }
+                
                 if (Input.GetKeyDown(KeyCode.Tab))
                 {
                     switch (pocketControl)
@@ -119,6 +142,9 @@ namespace Player
                                 Debug.Log("Switch Control to Receiver");
                                 GameController.Instance.isPocket = false;
                                 GameController.Instance.isReceiver = true;
+                                
+                                // if (receiverList[switchCount].GetComponent<Drone>().IsHolding 
+                                //     || receiverList[tempCount].GetComponent<Drone>().IsHolding) return;
                                 
                                 receiverList[tempCount].GetComponent<SpriteRenderer>().color = inFieldColor;
                                 receiverList[tempCount].GetComponent<SpriteRenderer>().sprite = receiverList[tempCount].GetComponent<ReceiverObject>().WhiteSprite;

@@ -9,6 +9,8 @@ public class HoldableObject : MonoBehaviour
 
     [SerializeField] private bool canRelease;
 
+    private bool checkDroneHold;
+
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -33,11 +35,16 @@ public class HoldableObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("DroneClaw")) canHold = false;
+        if (other.CompareTag("DroneClaw"))
+        {
+            canHold = false;
+            rb.isKinematic = false;
+        }
     }
 
     void HoldObject()
     {
+        if (droneObj == null) return;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (canHold)
@@ -46,15 +53,25 @@ public class HoldableObject : MonoBehaviour
                 {
                     canRelease = true;
                     rb.isKinematic = true;
+                    droneObj.GetComponentInParent<Drone>().IsHolding = true;
                     gameObject.transform.SetParent(droneObj.transform);
                 }
                 else
                 {
                     canRelease = false;
                     rb.isKinematic = false;
+                    droneObj.GetComponentInParent<Drone>().IsHolding = false;
                     gameObject.transform.SetParent(null);
                 }
             }
+        }
+
+        if (!droneObj.GetComponentInParent<Drone>().IsHolding)
+        {
+            canRelease = false;
+            rb.isKinematic = false;
+            droneObj.GetComponentInParent<Drone>().IsHolding = false;
+            gameObject.transform.SetParent(null);
         }
     }
 }
