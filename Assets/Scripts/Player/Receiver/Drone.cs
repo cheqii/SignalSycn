@@ -17,23 +17,25 @@ public class Drone : ReceiverObject
         Move();
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            if (rb.bodyType == RigidbodyType2D.Static)
-            {
-                Debug.Log("Ground kub");
-                transform.position += new Vector3(0f, 1f, 0f);
-            }
-        }
+        if (other.gameObject.CompareTag("Ground") 
+            || other.gameObject.CompareTag("PocketSignal")
+            || other.gameObject.CompareTag("Receiver"))  onGround = true;
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    { 
+        if (other.gameObject.CompareTag("Ground") 
+            || other.gameObject.CompareTag("PocketSignal") 
+            || other.gameObject.CompareTag("Receiver"))  onGround = false;
     }
 
     public override void Move()
     {
         if (GameController.Instance.isReceiver && isSelected)
         {
-            rb.bodyType = RigidbodyType2D.Static;
+            rb.isKinematic = true;
             
             float horizontalInput = Input.GetAxisRaw("Horizontal");
 
@@ -50,14 +52,14 @@ public class Drone : ReceiverObject
                 transform.position += new Vector3(0, 1 * speed * Time.deltaTime, 0f);
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) && !onGround)
             {
                 transform.position += new Vector3(0, -1 * speed * Time.deltaTime, 0f);
             }
         }
         else
         {
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.isKinematic = false;
         }
     }
 }

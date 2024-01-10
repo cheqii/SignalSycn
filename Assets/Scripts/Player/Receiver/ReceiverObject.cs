@@ -30,9 +30,9 @@ namespace Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ground")) onGround = true;
-
-            if (other.gameObject.CompareTag("PocketSignal")) onGround = true;
+            if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("PocketSignal")) 
+                onGround = true;
+            
         }
 
         private void OnTriggerStay2D(Collider2D other)
