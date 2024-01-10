@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player
@@ -37,11 +38,6 @@ namespace Player
         
         #endregion
 
-        private void Start()
-        {
-            
-        }
-
         public virtual void Move()
         {
             float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -68,7 +64,7 @@ namespace Player
                     onGround = false;
                 }
             }
-            
+
             transform.rotation = Quaternion.identity;
         }
         

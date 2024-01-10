@@ -66,8 +66,8 @@ namespace Player
 
                 var receiver = other.GetComponent<ReceiverObject>();
                 receiverList.Add(receiver);
-                var sprite = other.GetComponent<SpriteRenderer>();
                 
+                var sprite = other.GetComponent<SpriteRenderer>();
                 if(!receiver.isSelected) sprite.color = inFieldColor;
                 // sprite.sprite = other.GetComponent<ReceiverObject>().WhiteSprite;
             }
@@ -121,11 +121,9 @@ namespace Player
                                 GameController.Instance.isReceiver = true;
                                 
                                 receiverList[tempCount].GetComponent<SpriteRenderer>().color = inFieldColor;
-                                receiverList[tempCount].GetComponent<SpriteRenderer>().sprite = 
-                                    receiverList[tempCount].GetComponent<ReceiverObject>().WhiteSprite;
+                                receiverList[tempCount].GetComponent<SpriteRenderer>().sprite = receiverList[tempCount].GetComponent<ReceiverObject>().WhiteSprite;
                                 receiverList[switchCount].GetComponent<SpriteRenderer>().color = normalColor;
-                                receiverList[switchCount].GetComponent<SpriteRenderer>().sprite = 
-                                    receiverList[switchCount].GetComponent<ReceiverObject>().ColorSprite;
+                                receiverList[switchCount].GetComponent<SpriteRenderer>().sprite = receiverList[switchCount].GetComponent<ReceiverObject>().ColorSprite;
 
                                 pocketColor.color = normalColor;
 
@@ -138,6 +136,7 @@ namespace Player
 
                             if (switchCount >= receiverList.Count)
                             {
+                                Debug.Log("why here????");
                                 switchCount = 0;
                                 pocketControl = false;
                             }
@@ -162,6 +161,8 @@ namespace Player
                             pocketColor.color = controlColor;
                             try
                             {
+                                receiverList[tempCount].GetComponent<SpriteRenderer>().color = inFieldColor; 
+                                
                                 receiverList[tempCount].GetComponent<SpriteRenderer>().sprite = 
                                     receiverList[tempCount].GetComponent<ReceiverObject>().WhiteSprite;
                             }

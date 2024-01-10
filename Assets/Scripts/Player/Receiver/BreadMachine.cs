@@ -6,8 +6,6 @@ using UnityEngine.Events;
 
 public class BreadMachine : ReceiverObject
 {
-    private ReceiverObject receiver;
-
     [SerializeField] private Transform shootPoint;
     [SerializeField] private GameObject breadBullet;
 
@@ -19,7 +17,6 @@ public class BreadMachine : ReceiverObject
         rb = GetComponent<Rigidbody2D>();
         pocket = FindObjectOfType<PocketSignal>();
         
-        receiver = GetComponent<ReceiverObject>();
         shootPoint = transform.GetChild(0).GetComponent<Transform>();
     }
 
