@@ -114,7 +114,7 @@ namespace Player
                         {
                             break;
                         }
-                        if (list.GetComponent<Drone>().IsHolding )
+                        if (list.GetComponent<Drone>().IsHolding)
                         {
                             return; // if drone is holding then can't switch a receiver
                         }
@@ -124,7 +124,7 @@ namespace Player
                         }
                     }
                 }
-                
+
                 if (Input.GetKeyDown(KeyCode.Tab))
                 {
                     switch (pocketControl)

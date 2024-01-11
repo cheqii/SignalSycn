@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 62912194}
   m_Layer: 0
   m_Name: AttackField
-  m_TagString: Untagged
+  m_TagString: EnemyField
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,7 +189,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 10
 --- !u!1 &299152774
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ Transform:
   m_GameObject: {fileID: 299152774}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.59, y: 0.01, z: 0}
+  m_LocalPosition: {x: -0.59, y: 0.207, z: 0}
   m_LocalScale: {x: 1, y: 0.2164, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -588,10 +588,12 @@ MonoBehaviour:
   speed: 0
   jumpForce: 0
   foundPlayer: 0
+  receiverList: []
   bulletPrefab: {fileID: 1690379339351886749, guid: dd109ecce5cc5b0428c3265985392aa7, type: 3}
   shootPoint: {fileID: 1226958514}
   target: {fileID: 0}
-  fireRate: 0
+  isFire: 0
+  fireRate: 0.5
 --- !u!50 &1065464847
 Rigidbody2D:
   serializedVersion: 4
@@ -759,7 +761,7 @@ Transform:
   m_GameObject: {fileID: 1226958513}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.23, y: 0, z: 0}
+  m_LocalPosition: {x: -1.23, y: 0.197, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -779,7 +781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2042260650876445905, guid: 4af8f3345352ede4eae06a23a3933576, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1
+      value: -4.14
       objectReference: {fileID: 0}
     - target: {fileID: 2042260650876445905, guid: 4af8f3345352ede4eae06a23a3933576, type: 3}
       propertyPath: m_LocalPosition.y
@@ -867,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8482054005846662826, guid: 4af8f3345352ede4eae06a23a3933576, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8482054005846662826, guid: 4af8f3345352ede4eae06a23a3933576, type: 3}
       propertyPath: m_TagString
@@ -1198,7 +1200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441465917790407763, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4402994479685747225, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_Radius

@@ -9,6 +9,8 @@ TagManager:
   - Receiver
   - PocketSignal
   - DroneClaw
+  - EnemyBullet
+  - EnemyField
   layers:
   - Default
   - TransparentFX

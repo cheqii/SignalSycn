@@ -12,6 +12,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float jumpForce;
     [SerializeField] protected bool foundPlayer;
 
+    public bool FoundPlayer
+    {
+        get => foundPlayer;
+        set => foundPlayer = value;
+    }
+
     protected Rigidbody2D rb;
 
     public virtual void MoveToPlayer()

@@ -29,7 +29,6 @@ namespace Player
         {
             if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("PocketSignal")) 
                 onGround = true;
-            
         }
 
         private void OnTriggerStay2D(Collider2D other)

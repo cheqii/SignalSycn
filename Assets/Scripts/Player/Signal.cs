@@ -33,8 +33,26 @@ namespace Player
         
         [Header("Color Pick")]
         [SerializeField] protected Color32 inFieldColor;
+
+        public Color32 InfieldColor
+        {
+            get => inFieldColor;
+            set => inFieldColor = value;
+        }
         [SerializeField] protected Color32 controlColor;
+
+        public Color32 ControlColor
+        {
+            get => controlColor;
+            set => controlColor = value;
+        }
         [SerializeField] protected Color32 normalColor;
+
+        public Color32 NormalColor
+        {
+            get => normalColor;
+            set => normalColor = value;
+        }
         
         #endregion
 

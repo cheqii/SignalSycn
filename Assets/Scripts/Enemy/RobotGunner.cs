@@ -2,10 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Player;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RobotGunner : Enemy
 {
+    [Header("Receiver List")]
+    [SerializeField] private List<ReceiverObject> receiverList;
+
     [Header("Robot Gunner Things")]
     [SerializeField] private GameObject bulletPrefab;
 
@@ -13,7 +17,10 @@ public class RobotGunner : Enemy
 
     [SerializeField] private GameObject target;
 
+    [SerializeField] private bool isFire;
+    
     [SerializeField] private float fireRate;
+    private float timer;
     
     // Start is called before the first frame update
     void Start()
@@ -32,66 +39,59 @@ public class RobotGunner : Enemy
         AttackPlayer();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Receiver"))
-        {
-            if (other.GetComponent<ReceiverObject>().isSelected)
-            {
-                foundPlayer = true;
-                target = other.gameObject;
-            }
-        }
-        
-        if (other.CompareTag("PocketSignal"))
-        {
-            if (GameController.Instance.isPocket)
-            {
-                foundPlayer = true;
-                target = other.gameObject;
-            }
-            else
-            {
-                foundPlayer = false;
-            }
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Receiver"))
+    //     {
+    //         if (other.GetComponent<ReceiverObject>().isSelected)
+    //         {
+    //             Debug.Log($"Found {other.gameObject.name}");
+    //             foundPlayer = true;
+    //             target = other.gameObject;
+    //         }
+    //     }
+    //     
+    //     if (other.CompareTag("PocketSignal"))
+    //     {
+    //         if (GameController.Instance.isPocket)
+    //         {
+    //             Debug.Log($"Found {other.gameObject.name}");
+    //             foundPlayer = true;
+    //             target = other.gameObject;
+    //         }
+    //         else foundPlayer = false;
+    //     }
+    // }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Receiver"))
         {
-            if (!other.GetComponent<ReceiverObject>().isSelected)
+            if (GameController.Instance.isReceiver)
             {
-                foundPlayer = false;
-            }
-            else
-            {
+                Debug.Log("Hello world is it work ????");
+                Debug.Log($"Found {other.gameObject.name}");
                 foundPlayer = true;
                 target = other.gameObject;
             }
+            else foundPlayer = false;
         }
 
         if (other.CompareTag("PocketSignal"))
         {
-            if (other.CompareTag("PocketSignal"))
+            if (GameController.Instance.isPocket)
             {
-                if (GameController.Instance.isPocket)
-                {
-                    foundPlayer = true;
-                    target = other.gameObject;
-                }
-                else
-                {
-                    foundPlayer = false;
-                }
+                Debug.Log($"Found {other.gameObject.name}");
+                foundPlayer = true;
+                target = other.gameObject;
             }
+            else foundPlayer = false;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Receiver") || other.CompareTag("PocketSignal")) foundPlayer = false;
+        // if (other.CompareTag("Receiver") || other.CompareTag("PocketSignal")) foundPlayer = false;
     }
 
     public override void AttackPlayer()
@@ -108,10 +108,23 @@ public class RobotGunner : Enemy
 
     void FireBullet()
     {
-        Debug.Log("Enemy Attack");
-        var bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-        // bullet.transform.LookAt(target.transform.position);
-        Destroy(bullet, 5f);
+        if (!isFire)
+        {
+            timer += Time.deltaTime;
+            if (timer > fireRate)
+            {
+                isFire = true;
+                timer = 0;
+            }
+        }
+        else
+        {
+            Debug.Log("Enemy Attack");
+            var bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+            Destroy(bullet, 1f);
+            isFire = false;
+        }
+        
     }
 
     void CheckFaceDirection()
