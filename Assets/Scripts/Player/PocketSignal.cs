@@ -69,7 +69,6 @@ namespace Player
                 
                 var sprite = other.GetComponent<SpriteRenderer>();
                 if(!receiver.isSelected) sprite.color = inFieldColor;
-                // sprite.sprite = other.GetComponent<ReceiverObject>().WhiteSprite;
             }
         }
 
@@ -79,8 +78,7 @@ namespace Player
             {
                 receiverList.Remove(other.gameObject.GetComponent<ReceiverObject>());
                 other.GetComponent<SpriteRenderer>().color = normalColor;
-                // other.GetComponent<SpriteRenderer>().sprite = other.GetComponent<ReceiverObject>().WhiteSprite;
-
+               
                 gameObject.GetComponent<SpriteRenderer>().color = controlColor;
                 GameController.Instance.isPocket = true;
                 GameController.Instance.isReceiver = false;
@@ -120,10 +118,6 @@ namespace Player
                         {
                             return; // if drone is holding then can't switch a receiver
                         }
-                        // if (!list.GetComponent<Drone>().IsHolding && !list.GetComponent<Drone>().isSelected)
-                        // {
-                        //     break;
-                        // }
                         if (list.GetComponent<ReceiverObject>())
                         {
                             break; // check if object is not drone then break a loop and can switch to another receiver
@@ -142,10 +136,7 @@ namespace Player
                                 Debug.Log("Switch Control to Receiver");
                                 GameController.Instance.isPocket = false;
                                 GameController.Instance.isReceiver = true;
-                                
-                                // if (receiverList[switchCount].GetComponent<Drone>().IsHolding 
-                                //     || receiverList[tempCount].GetComponent<Drone>().IsHolding) return;
-                                
+
                                 receiverList[tempCount].GetComponent<SpriteRenderer>().color = inFieldColor;
                                 receiverList[tempCount].GetComponent<SpriteRenderer>().sprite = receiverList[tempCount].GetComponent<ReceiverObject>().WhiteSprite;
                                 receiverList[switchCount].GetComponent<SpriteRenderer>().color = normalColor;
@@ -162,7 +153,6 @@ namespace Player
 
                             if (switchCount >= receiverList.Count)
                             {
-                                Debug.Log("why here????");
                                 switchCount = 0;
                                 pocketControl = false;
                             }
@@ -203,22 +193,6 @@ namespace Player
                     }
                 }
             }
-        }
-
-        float FindReceiverDistance()
-        {
-            foreach (var receiver in receiverList)
-            {
-                var distance = Mathf.Sqrt(Mathf.Pow((receiver.transform.position.x - this.transform.position.x), 2)
-                                          + Mathf.Pow((receiver.transform.position.y - this.transform.position.y), 2));
-                
-                receiverDist.Add(distance);
-
-                Debug.Log(distance);
-                return distance;
-            }
-        
-            return 0;
         }
 
         #endregion

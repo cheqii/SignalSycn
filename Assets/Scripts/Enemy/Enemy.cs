@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Enemy : MonoBehaviour
+{
+    [Header("Data")]
+    [SerializeField] protected EnemyData enemyData;
+        
+    [Header("Stat")]
+    [SerializeField] protected float speed;
+    [SerializeField] protected float jumpForce;
+    [SerializeField] protected bool foundPlayer;
+
+    protected Rigidbody2D rb;
+
+    public virtual void MoveToPlayer()
+    {
+        
+    }
+
+    public virtual void AttackPlayer()
+    {
+        
+    }
+}

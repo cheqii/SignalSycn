@@ -70,7 +70,6 @@ public class HoldableObject : MonoBehaviour
         {
             canRelease = false;
             rb.isKinematic = false;
-            droneObj.GetComponentInParent<Drone>().IsHolding = false;
             gameObject.transform.SetParent(null);
         }
     }

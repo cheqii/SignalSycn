@@ -10,8 +10,6 @@ namespace Player
 
         #region -Declared Variables-
 
-        public ReceiverData receiverData;
-
         public bool isSelected;
 
         protected PocketSignal pocket;
