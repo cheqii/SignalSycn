@@ -6,6 +6,12 @@ public class Enemy : MonoBehaviour
 {
     [Header("Data")]
     [SerializeField] protected EnemyData enemyData;
+
+    public EnemyData EnemyData
+    {
+        get => enemyData;
+        set => enemyData = value;
+    }
         
     [Header("Stat")]
     [SerializeField] protected float speed;

@@ -7,8 +7,16 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private float bulletForce;
+
+    public float BulletForce
+    {
+        get => bulletForce;
+        set => bulletForce = value;
+    }
     
     private Rigidbody2D rb;
+    private Enemy enemyShooter;
+    private Transform target;
     private bool checkRight;
 
     public bool CheckRight
@@ -24,6 +32,10 @@ public class EnemyBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         pocket = FindObjectOfType<PocketSignal>();
+
+        enemyShooter = FindObjectOfType<RobotGunner>();
+        
+        target = enemyShooter.GetComponent<RobotGunner>().Target.transform;
     }
 
     // Update is called once per frame
@@ -31,7 +43,8 @@ public class EnemyBullet : MonoBehaviour
     {
         if (!checkRight)
         {
-            rb.velocity = Vector2.left * bulletForce;
+            Vector3 look = enemyShooter.transform.InverseTransformPoint(target.transform.position);
+            rb.velocity = new Vector2(look.x, look.y).normalized * bulletForce;
         }
     }
 
@@ -46,6 +59,8 @@ public class EnemyBullet : MonoBehaviour
                 GameController.Instance.isPocket = true;
                 GameController.Instance.isReceiver = false;
                 pocket.GetComponent<SpriteRenderer>().color = pocket.ControlColor;
+                other.GetComponent<SpriteRenderer>().sprite = other.GetComponent<ReceiverObject>().WhiteSprite;
+                other.GetComponent<SpriteRenderer>().color = other.GetComponent<ReceiverObject>().InfieldColor;
             }
             Destroy(gameObject);
         }

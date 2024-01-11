@@ -12,14 +12,18 @@ public class RobotGunner : Enemy
 
     [Header("Robot Gunner Things")]
     [SerializeField] private GameObject bulletPrefab;
-
     [SerializeField] private Transform shootPoint;
-
     [SerializeField] private GameObject target;
 
-    [SerializeField] private bool isFire;
+    public GameObject Target
+    {
+        get => target;
+        set => target = value;
+    }
     
+    [SerializeField] private bool isFire;
     [SerializeField] private float fireRate;
+
     private float timer;
     
     // Start is called before the first frame update
@@ -39,42 +43,51 @@ public class RobotGunner : Enemy
         AttackPlayer();
     }
 
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.CompareTag("Receiver"))
-    //     {
-    //         if (other.GetComponent<ReceiverObject>().isSelected)
-    //         {
-    //             Debug.Log($"Found {other.gameObject.name}");
-    //             foundPlayer = true;
-    //             target = other.gameObject;
-    //         }
-    //     }
-    //     
-    //     if (other.CompareTag("PocketSignal"))
-    //     {
-    //         if (GameController.Instance.isPocket)
-    //         {
-    //             Debug.Log($"Found {other.gameObject.name}");
-    //             foundPlayer = true;
-    //             target = other.gameObject;
-    //         }
-    //         else foundPlayer = false;
-    //     }
-    // }
-
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Receiver"))
         {
-            if (GameController.Instance.isReceiver)
+            receiverList.Add(other.GetComponent<ReceiverObject>());
+            if (other.GetComponent<ReceiverObject>().isSelected)
             {
-                Debug.Log("Hello world is it work ????");
+                Debug.Log($"Found {other.gameObject.name}");
+                foundPlayer = true;
+                target = other.gameObject;
+            }
+        }
+        
+        if (other.CompareTag("PocketSignal"))
+        {
+            if (GameController.Instance.isPocket)
+            {
                 Debug.Log($"Found {other.gameObject.name}");
                 foundPlayer = true;
                 target = other.gameObject;
             }
             else foundPlayer = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Receiver"))
+        {
+            if (!other.GetComponent<ReceiverObject>().isSelected) foundPlayer = false;
+            // if (receiverList.Count >= 2) return;
+            for (int i = 0; i < receiverList.Count; i++)
+            {
+                if (receiverList[i].GetComponent<ReceiverObject>().isSelected)
+                {
+                    foundPlayer = true;
+                    target = receiverList[i].gameObject;
+                }
+                if(GameController.Instance.isPocket)
+                {
+                    Debug.Log("SUpppp");
+                    foundPlayer = false;
+                    break;
+                }
+            }
         }
 
         if (other.CompareTag("PocketSignal"))
@@ -91,7 +104,11 @@ public class RobotGunner : Enemy
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // if (other.CompareTag("Receiver") || other.CompareTag("PocketSignal")) foundPlayer = false;
+        if (other.CompareTag("Receiver"))
+        {
+            receiverList.Remove(other.GetComponent<ReceiverObject>());
+            foundPlayer = false;
+        }
     }
 
     public override void AttackPlayer()
