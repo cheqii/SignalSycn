@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 687640294308948182}
   - component: {fileID: 7745777505422874258}
+  - component: {fileID: 634674278942135923}
   m_Layer: 0
   m_Name: wallLeft
   m_TagString: PatrolZone
@@ -61,7 +62,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.029075377, y: 1.22825}
@@ -77,6 +78,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.02250926, y: 1.43859}
   m_EdgeRadius: 0
+--- !u!114 &634674278942135923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137118827320366896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84993537cc3e37541886c8e976ce610e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4657016147208371697
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4657016147208371697}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.8, y: -2.04, z: 0}
   m_LocalScale: {x: 6.98, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -219,6 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7042175084918586721}
   - component: {fileID: 3566107470571868992}
+  - component: {fileID: 4534500138094768455}
   m_Layer: 0
   m_Name: wallRight
   m_TagString: PatrolZone
@@ -270,7 +284,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.029075377, y: 1.2282504}
@@ -286,3 +300,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.022509262, y: 1.4385903}
   m_EdgeRadius: 0
+--- !u!114 &4534500138094768455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7380615029742965087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84993537cc3e37541886c8e976ce610e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

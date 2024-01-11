@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class MultipleTargetCamera : MonoBehaviour
 {
+    public List<Transform> targetPlayer;
+    
     private Camera cam;
     private void Awake()
     {

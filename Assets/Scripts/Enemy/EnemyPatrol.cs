@@ -23,6 +23,12 @@ public class EnemyPatrol : MonoBehaviour
     }
 
     [SerializeField] private bool checkPatrol;
+
+    public bool CheckPatrol
+    {
+        get => checkPatrol;
+        set => checkPatrol = value;
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -59,14 +65,6 @@ public class EnemyPatrol : MonoBehaviour
                     checkPatrol = false;
                 }
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("PatrolZone"))
-        {
-            checkPatrol = true;
         }
     }
 }
