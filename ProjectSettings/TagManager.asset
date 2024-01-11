@@ -11,6 +11,8 @@ TagManager:
   - DroneClaw
   - EnemyBullet
   - EnemyField
+  - Enemy
+  - PatrolZone
   layers:
   - Default
   - TransparentFX

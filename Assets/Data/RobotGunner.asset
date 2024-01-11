@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0e3695563c0ef4aab1a92d05e7464b, type: 3}
   m_Name: RobotGunner
   m_EditorClassIdentifier: 
+  colorSprite: {fileID: 21300000, guid: 2edf0f643624caf439686d1bb1faa7c0, type: 3}
+  whiteSprite: {fileID: 21300000, guid: 4b1f44d32e713e64397af9dc69e8ccaf, type: 3}
   name: RobotGunner
-  speed: 5
+  speed: 3
   jumpForce: 5
   type: 0

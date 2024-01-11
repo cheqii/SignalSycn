@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObject/EnemyData", fileName = "Enemy", order = 0)]
 public class EnemyData : ScriptableObject
 {
+    public Sprite colorSprite;
+    public Sprite whiteSprite;
+    
     public string name;
     public float speed;
     public float jumpForce;

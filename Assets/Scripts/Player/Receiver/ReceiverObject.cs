@@ -27,7 +27,8 @@ namespace Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("PocketSignal")) 
+            if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("PocketSignal")
+                || other.gameObject.CompareTag("Receiver")) 
                 onGround = true;
         }
 
@@ -57,7 +58,6 @@ namespace Player
             if (other.CompareTag("SignalField"))
             {
                 isSelected = false;
-                // pocket.pocketControl = true;
                 
                 if (pocket.pocketControl) // left receiver in field is exit from fields
                 {

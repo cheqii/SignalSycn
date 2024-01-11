@@ -66,10 +66,11 @@ public class HoldableObject : MonoBehaviour
             }
         }
 
-        if (!droneObj.GetComponentInParent<Drone>().IsHolding)
+        if (!droneObj.GetComponentInParent<Drone>().IsHolding || !droneObj.GetComponentInParent<Drone>().isSelected)
         {
             canRelease = false;
             rb.isKinematic = false;
+            droneObj.GetComponentInParent<Drone>().IsHolding = false;
             gameObject.transform.SetParent(null);
         }
     }

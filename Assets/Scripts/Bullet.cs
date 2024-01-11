@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -19,5 +20,14 @@ public class Bullet : MonoBehaviour
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("EnemyBullet"))
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
     }
 }

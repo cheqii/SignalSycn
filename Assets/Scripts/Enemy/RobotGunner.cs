@@ -25,13 +25,17 @@ public class RobotGunner : Enemy
     [SerializeField] private float fireRate;
 
     private float timer;
-    
+    private SpriteRenderer robotSprite;
+
+    private EnemyPatrol _patrol;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        robotSprite = GetComponent<SpriteRenderer>();
 
-        // bulletPrefab.GetComponent<EnemyBullet>().CheckRight = false;
+        _patrol = GetComponent<EnemyPatrol>();
         
         speed = enemyData.speed;
         jumpForce = enemyData.jumpForce;
@@ -40,7 +44,10 @@ public class RobotGunner : Enemy
     // Update is called once per frame
     void Update()
     {
+        // CheckFaceDirection();
         AttackPlayer();
+        if (foundPlayer) _patrol.IsPatrol = false;
+        else _patrol.IsPatrol = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -72,26 +79,26 @@ public class RobotGunner : Enemy
     {
         if (other.CompareTag("Receiver"))
         {
+            robotSprite.sprite = enemyData.colorSprite;
             if (!other.GetComponent<ReceiverObject>().isSelected) foundPlayer = false;
-            // if (receiverList.Count >= 2) return;
             for (int i = 0; i < receiverList.Count; i++)
             {
                 if (receiverList[i].GetComponent<ReceiverObject>().isSelected)
                 {
                     foundPlayer = true;
                     target = receiverList[i].gameObject;
+                    return;
                 }
-                if(GameController.Instance.isPocket)
-                {
-                    Debug.Log("SUpppp");
-                    foundPlayer = false;
-                    break;
-                }
+            }
+            if(GameController.Instance.isPocket)
+            {
+                foundPlayer = false;
             }
         }
 
         if (other.CompareTag("PocketSignal"))
         {
+            robotSprite.sprite = enemyData.colorSprite;
             if (GameController.Instance.isPocket)
             {
                 Debug.Log($"Found {other.gameObject.name}");
@@ -101,12 +108,14 @@ public class RobotGunner : Enemy
             else foundPlayer = false;
         }
     }
+    
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Receiver"))
+        _patrol.IsPatrol = true;
+        if (other.CompareTag("Receiver") || other.CompareTag("PocketSignal"))
         {
-            receiverList.Remove(other.GetComponent<ReceiverObject>());
+            robotSprite.sprite = enemyData.whiteSprite;
             foundPlayer = false;
         }
     }
@@ -136,20 +145,11 @@ public class RobotGunner : Enemy
         }
         else
         {
-            Debug.Log("Enemy Attack");
+            // Debug.Log("Enemy Attack");
             var bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
             Destroy(bullet, 1f);
             isFire = false;
         }
         
-    }
-
-    void CheckFaceDirection()
-    {
-        if (transform.rotation.y > 0)
-        {
-            bulletPrefab.GetComponent<EnemyBullet>().CheckRight = true;
-        }
-        if (transform.rotation.y <= 0) bulletPrefab.GetComponent<EnemyBullet>().CheckRight = false;
     }
 }

@@ -25,7 +25,7 @@ public class Drone : ReceiverObject
         Move();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground") 
             || other.gameObject.CompareTag("PocketSignal")
