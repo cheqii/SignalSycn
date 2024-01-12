@@ -15,9 +15,6 @@ namespace Player
 
         public List<ReceiverObject> receiverList;
 
-        public List<float> receiverDist;
-
-
         [Header("Pocket Check")]
         public bool foundReceiver; 
         public bool pocketControl;
@@ -25,6 +22,9 @@ namespace Player
         [Header("For Checking Switch Receiver")]
         public int switchCount;
         public int tempCount;
+
+        [Header("Camera")]
+        private MultipleTargetCamera cam;
 
         #endregion
         
@@ -40,6 +40,8 @@ namespace Player
             signalFieldCol = GetComponentInChildren<CircleCollider2D>();
 
             signalFieldCol.radius = signalRange;
+
+            cam = Camera.main.GetComponent<MultipleTargetCamera>();
         }
         
         void Update()
@@ -66,6 +68,7 @@ namespace Player
 
                 var receiver = other.GetComponent<ReceiverObject>();
                 receiverList.Add(receiver);
+                cam.targetPlayer.Add(receiver.transform);
                 
                 var sprite = other.GetComponent<SpriteRenderer>();
                 if(!receiver.isSelected) sprite.color = inFieldColor;
@@ -76,7 +79,8 @@ namespace Player
         {
             if (other.CompareTag("Receiver"))
             {
-                receiverList.Remove(other.gameObject.GetComponent<ReceiverObject>());
+                receiverList.Remove(other.GetComponent<ReceiverObject>());
+                cam.targetPlayer.Remove(other.GetComponent<ReceiverObject>().transform);
                 other.GetComponent<SpriteRenderer>().color = normalColor;
                
                 gameObject.GetComponent<SpriteRenderer>().color = controlColor;
