@@ -56,6 +56,11 @@ public class MultipleTargetCamera : MonoBehaviour
 
     Vector3 FollowPlayerSignal()
     {
+        if (pocket == null) return Vector3.zero;
+        if (GameController.Instance.isPocket)
+        {
+            return pocket.transform.position;
+        }
         if (GameController.Instance.isReceiver)
         {
             foreach (var list in pocket.receiverList)
@@ -70,7 +75,7 @@ public class MultipleTargetCamera : MonoBehaviour
                 }
             }
         }
-        
-        return pocket.transform.position;
+
+        return Vector3.zero;
     }
 }

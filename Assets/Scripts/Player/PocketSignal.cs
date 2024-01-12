@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -10,40 +10,40 @@ namespace Player
         #region -Declared Variables-
 
         [SerializeField] private float signalRange = 5f;
-        
+
         private CircleCollider2D signalFieldCol; // to check from receiverObj
 
         public List<ReceiverObject> receiverList;
 
-        [Header("Pocket Check")]
-        public bool foundReceiver; 
+        [Header("Pocket Check")] public bool foundReceiver;
         public bool pocketControl;
 
         [Header("For Checking Switch Receiver")]
         public int switchCount;
+
         public int tempCount;
 
-        [Header("Camera")]
+        [Header("Camera")] 
         private MultipleTargetCamera cam;
 
         #endregion
-        
+
         void Start()
         {
 
             pocketControl = true;
-            
+
             onGround = true;
-            
+
             rb = GetComponent<Rigidbody2D>();
-            
+
             signalFieldCol = GetComponentInChildren<CircleCollider2D>();
 
             signalFieldCol.radius = signalRange;
 
             cam = Camera.main.GetComponent<MultipleTargetCamera>();
         }
-        
+
         void Update()
         {
             Move();
@@ -69,9 +69,9 @@ namespace Player
                 var receiver = other.GetComponent<ReceiverObject>();
                 receiverList.Add(receiver);
                 cam.targetPlayer.Add(receiver.transform);
-                
+
                 var sprite = other.GetComponent<SpriteRenderer>();
-                if(!receiver.isSelected) sprite.color = inFieldColor;
+                if (!receiver.isSelected) sprite.color = inFieldColor;
             }
         }
 
@@ -82,11 +82,11 @@ namespace Player
                 receiverList.Remove(other.GetComponent<ReceiverObject>());
                 cam.targetPlayer.Remove(other.GetComponent<ReceiverObject>().transform);
                 other.GetComponent<SpriteRenderer>().color = normalColor;
-               
+
                 gameObject.GetComponent<SpriteRenderer>().color = controlColor;
                 GameController.Instance.isPocket = true;
                 GameController.Instance.isReceiver = false;
-                
+
                 switchCount = 0;
                 tempCount = 0;
             }
@@ -96,7 +96,7 @@ namespace Player
 
         public override void Move()
         {
-            if(GameController.Instance.isPocket) base.Move();
+            if (GameController.Instance.isPocket) base.Move();
         }
 
         void IncreaseFieldRadius(int value)

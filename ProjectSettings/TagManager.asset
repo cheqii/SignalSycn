@@ -13,6 +13,7 @@ TagManager:
   - EnemyField
   - Enemy
   - PatrolZone
+  - FlagPoint
   layers:
   - Default
   - TransparentFX

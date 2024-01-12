@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,7 +15,7 @@ public class Enemy : MonoBehaviour
         get => enemyData;
         set => enemyData = value;
     }
-        
+
     [Header("Stat")]
     [SerializeField] protected float speed;
 

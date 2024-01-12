@@ -59,7 +59,7 @@ public class EnemyBullet : MonoBehaviour
         {
             if (GameController.Instance.isPocket)
             {
-                Debug.Log("get damage");
+                GameController.Instance.DecreaseLife(1);
             }
             Destroy(gameObject);
         }
