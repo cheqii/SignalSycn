@@ -25,6 +25,12 @@ namespace Player
             pocket = FindObjectOfType<PocketSignal>();
         }
 
+        private void Update()
+        {
+            if(GameController.Instance.isReceiver && isSelected) Move();
+        }
+
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("PocketSignal")
