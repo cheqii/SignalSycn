@@ -1,8 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -67,8 +66,14 @@ public class GameController : MonoBehaviour
 
     #endregion
 
-    void GameIsOver()
+    public void GameIsOver()
     {
         if(currentLife <= 0) Destroy(pocket.gameObject);
+    }
+
+    public void NextLevelScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadSceneAsync(currentSceneIndex + 1);
     }
 }

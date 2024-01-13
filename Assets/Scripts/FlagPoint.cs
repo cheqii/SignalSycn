@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class FlagPoint : MonoBehaviour
@@ -6,7 +7,8 @@ public class FlagPoint : MonoBehaviour
     {
         if (other.CompareTag("PocketSignal"))
         {
-            Debug.Log("Go to next stage!");
+            Debug.Log("Go to next stage");
+            GameController.Instance.NextLevelScene();
         }
     }
 }

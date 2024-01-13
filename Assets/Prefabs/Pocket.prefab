@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 4
+  jumpForce: 5
   onGround: 0
   colorSprite: {fileID: 0}
   whiteSprite: {fileID: 0}
@@ -186,9 +186,8 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  signalRange: 5
+  signalRange: 20
   receiverList: []
-  receiverDist: []
   foundReceiver: 0
   pocketControl: 0
   switchCount: 0

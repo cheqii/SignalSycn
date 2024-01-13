@@ -1,10 +1,13 @@
 using System;
 using Player;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class Drone : ReceiverObject
 {
     [SerializeField] private bool isHolding;
+    public bool isFlying;
+    public bool canFlyUp;
 
     public bool IsHolding
     {
@@ -27,16 +30,24 @@ public class Drone : ReceiverObject
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground") 
+        if (other.gameObject.CompareTag("Ground")
             || other.gameObject.CompareTag("PocketSignal")
-            || other.gameObject.CompareTag("Receiver"))  onGround = true;
+            || other.gameObject.CompareTag("Receiver"))
+        {
+            onGround = true;
+            isFlying = false;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
-    { 
-        if (other.gameObject.CompareTag("Ground") 
-            || other.gameObject.CompareTag("PocketSignal") 
-            || other.gameObject.CompareTag("Receiver"))  onGround = false;
+    {
+        if (other.gameObject.CompareTag("Ground")
+            || other.gameObject.CompareTag("PocketSignal")
+            || other.gameObject.CompareTag("Receiver"))
+        {
+            isFlying = true;
+            onGround = false;
+        }
     }
     
     private void OnTriggerExit2D(Collider2D other)
@@ -72,7 +83,7 @@ public class Drone : ReceiverObject
     {
         if (GameController.Instance.isReceiver && isSelected)
         {
-            rb.isKinematic = true;
+            rb.gravityScale = 0;
             
             float horizontalInput = Input.GetAxisRaw("Horizontal");
 
@@ -89,14 +100,14 @@ public class Drone : ReceiverObject
                 transform.position += new Vector3(0, 1 * speed * Time.deltaTime, 0f);
             }
 
-            if (Input.GetKey(KeyCode.S) && !onGround)
+            if (Input.GetKey(KeyCode.S))
             {
                 transform.position += new Vector3(0, -1 * speed * Time.deltaTime, 0f);
             }
         }
         else
         {
-            rb.isKinematic = false;
+            rb.gravityScale = 1;
         }
     }
 }
