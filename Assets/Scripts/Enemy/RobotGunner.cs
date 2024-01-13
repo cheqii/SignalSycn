@@ -45,7 +45,6 @@ public class RobotGunner : Enemy
     // Update is called once per frame
     void Update()
     {
-        // CheckFaceDirection();
         AttackPlayer();
         if (foundPlayer) _patrol.IsPatrol = false;
         else _patrol.IsPatrol = true;
@@ -55,7 +54,7 @@ public class RobotGunner : Enemy
     {
         if (other.CompareTag("Receiver"))
         {
-            receiverList.Add(other.GetComponent<ReceiverObject>());
+            robotSprite.sprite = enemyData.colorSprite;
             if (other.GetComponent<ReceiverObject>().isSelected)
             {
                 Debug.Log($"Found {other.gameObject.name}");
@@ -66,39 +65,6 @@ public class RobotGunner : Enemy
         
         if (other.CompareTag("PocketSignal"))
         {
-            if (GameController.Instance.isPocket)
-            {
-                Debug.Log($"Found {other.gameObject.name}");
-                foundPlayer = true;
-                target = other.gameObject;
-            }
-            else foundPlayer = false;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Receiver"))
-        {
-            robotSprite.sprite = enemyData.colorSprite;
-            if (!other.GetComponent<ReceiverObject>().isSelected) foundPlayer = false;
-            for (int i = 0; i < receiverList.Count; i++)
-            {
-                if (receiverList[i].GetComponent<ReceiverObject>().isSelected)
-                {
-                    foundPlayer = true;
-                    target = receiverList[i].gameObject;
-                    return;
-                }
-            }
-            if(GameController.Instance.isPocket)
-            {
-                foundPlayer = false;
-            }
-        }
-
-        if (other.CompareTag("PocketSignal"))
-        {
             robotSprite.sprite = enemyData.colorSprite;
             if (GameController.Instance.isPocket)
             {
@@ -109,11 +75,9 @@ public class RobotGunner : Enemy
             else foundPlayer = false;
         }
     }
-    
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        _patrol.IsPatrol = true;
         if (other.CompareTag("Receiver") || other.CompareTag("PocketSignal"))
         {
             robotSprite.sprite = enemyData.whiteSprite;

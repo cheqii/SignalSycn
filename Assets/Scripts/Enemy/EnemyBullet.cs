@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Player;
 using UnityEngine;
 
@@ -21,9 +23,26 @@ public class EnemyBullet : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // if(target == null) return;
+        // if (!enemyShooter.GetComponent<EnemyPatrol>().IsMovingRight)
+        // {
+        //     Vector3 look = this.transform.InverseTransformPoint(target.transform.position);
+        //     rb.velocity = new Vector2(-look.x, look.y).normalized * bulletForce;
+        // }
+        // if (enemyShooter.GetComponent<EnemyPatrol>().IsMovingRight)
+        // {
+        //     Vector3 look = this.transform.InverseTransformPoint(target.transform.position);
+        //     rb.velocity = new Vector2(look.x, look.y).normalized * bulletForce;
+        // }
+        
+    }
+
+    private void LateUpdate()
+    {
+        if(target == null) return;
         if (!enemyShooter.GetComponent<EnemyPatrol>().IsMovingRight)
         {
-            Vector3 look = enemyShooter.transform.InverseTransformPoint(target.transform.position);
+            Vector3 look = enemyShooter.transform.InverseTransformPoint(target.transform.position); 
             rb.velocity = new Vector2(-look.x, look.y).normalized * bulletForce;
         }
         if (enemyShooter.GetComponent<EnemyPatrol>().IsMovingRight)
@@ -31,28 +50,27 @@ public class EnemyBullet : MonoBehaviour
             Vector3 look = enemyShooter.transform.InverseTransformPoint(target.transform.position);
             rb.velocity = new Vector2(look.x, look.y).normalized * bulletForce;
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Receiver"))
+        if (other.gameObject.CompareTag("Receiver"))
         {
-            if (other.GetComponent<ReceiverObject>().isSelected)
+            if (other.gameObject.GetComponent<ReceiverObject>().isSelected)
             {
                 enemyShooter.FoundPlayer = false;
-                other.GetComponent<ReceiverObject>().isSelected = false;
+                other.gameObject.GetComponent<ReceiverObject>().isSelected = false;
                 pocket.pocketControl = true;
                 GameController.Instance.isPocket = true;
                 GameController.Instance.isReceiver = false;
                 pocket.GetComponent<SpriteRenderer>().color = pocket.ControlColor;
-                other.GetComponent<SpriteRenderer>().sprite = other.GetComponent<ReceiverObject>().WhiteSprite;
-                other.GetComponent<SpriteRenderer>().color = other.GetComponent<ReceiverObject>().InfieldColor;
+                other.gameObject.GetComponent<SpriteRenderer>().sprite = other.gameObject.GetComponent<ReceiverObject>().WhiteSprite;
+                other.gameObject.GetComponent<SpriteRenderer>().color = other.gameObject.GetComponent<ReceiverObject>().InfieldColor;
             }
             Destroy(gameObject);
         }
 
-        if (other.CompareTag("PocketSignal"))
+        if (other.gameObject.CompareTag("PocketSignal"))
         {
             if (GameController.Instance.isPocket)
             {

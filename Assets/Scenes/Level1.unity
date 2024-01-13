@@ -2509,6 +2509,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1642064882354874342, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1828493233578171833, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.14
@@ -2549,9 +2553,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2499016609831530346, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586235341684500816, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: radius
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586235341684500816, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4580299913648406861, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
       propertyPath: m_Name
       value: Pocket
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271987931435291052, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271987931435291052, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989176177137394284, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989176177137394284, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

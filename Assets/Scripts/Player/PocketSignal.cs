@@ -11,6 +11,12 @@ namespace Player
 
         [SerializeField] private float signalRange = 5f;
 
+        public float SignalRange
+        {
+            get => signalRange;
+            set => signalRange = value;
+        }
+
         private CircleCollider2D signalFieldCol; // to check from receiverObj
 
         public List<ReceiverObject> receiverList;
