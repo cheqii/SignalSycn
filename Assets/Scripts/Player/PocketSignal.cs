@@ -50,11 +50,29 @@ namespace Player
             SwitchControlToReceiver();
         }
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Spike"))
+            {
+                Debug.Log("spike hurt");
+                GameController.Instance.DecreaseLife(1);
+            }
+        }
+
         private void OnCollisionStay2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Ground")
+                || other.gameObject.CompareTag("Receiver"))
+            {
+                onGround = true;
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Ground"))
             {
-                onGround = true;
+                onGround = false;
             }
         }
 

@@ -7,8 +7,6 @@ public class Drone : ReceiverObject
 {
     [SerializeField] private bool isHolding;
     public bool isFlying;
-    public bool canFlyUp;
-
     public bool IsHolding
     {
         get => isHolding;
@@ -35,7 +33,7 @@ public class Drone : ReceiverObject
             || other.gameObject.CompareTag("Receiver"))
         {
             onGround = true;
-            isFlying = false;
+            isFlying = true;
         }
     }
 
@@ -45,7 +43,6 @@ public class Drone : ReceiverObject
             || other.gameObject.CompareTag("PocketSignal")
             || other.gameObject.CompareTag("Receiver"))
         {
-            isFlying = true;
             onGround = false;
         }
     }

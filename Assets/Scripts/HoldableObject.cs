@@ -52,14 +52,14 @@ public class HoldableObject : MonoBehaviour
                 if (!canRelease)
                 {
                     canRelease = true;
-                    rb.isKinematic = true;
+                    rb.gravityScale = 0;
                     droneObj.GetComponentInParent<Drone>().IsHolding = true;
                     gameObject.transform.SetParent(droneObj.transform);
                 }
                 else
                 {
                     canRelease = false;
-                    rb.isKinematic = false;
+                    rb.gravityScale = 1;
                     droneObj.GetComponentInParent<Drone>().IsHolding = false;
                     gameObject.transform.SetParent(null);
                 }

@@ -15,7 +15,13 @@ namespace Player
 
         [SerializeField] protected bool onGround;
 
-        [SerializeField] protected Sprite colorSprite;
+        public bool OnGround
+        {
+            get => onGround;
+            set => onGround = value;
+        }
+
+            [SerializeField] protected Sprite colorSprite;
 
         public Sprite ColorSprite
         {

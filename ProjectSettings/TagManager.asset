@@ -15,6 +15,7 @@ TagManager:
   - PatrolZone
   - FlagPoint
   - LeverSwitch
+  - Spike
   layers:
   - Default
   - TransparentFX
