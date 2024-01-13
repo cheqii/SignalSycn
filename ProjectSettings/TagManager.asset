@@ -14,6 +14,7 @@ TagManager:
   - Enemy
   - PatrolZone
   - FlagPoint
+  - LeverSwitch
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tile
+    uniqueID: 4113754421
     locked: 0
