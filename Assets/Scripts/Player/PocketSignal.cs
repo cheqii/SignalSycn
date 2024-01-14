@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DefaultNamespace;
 using UnityEngine;
 
 namespace Player
@@ -26,11 +25,19 @@ namespace Player
 
         [Header("For Checking Switch Receiver")]
         public int switchCount;
-
         public int tempCount;
 
         [Header("Camera")] 
         private MultipleTargetCamera cam;
+
+        [Header("Signal Booster")]
+        [SerializeField] private SignalBooster booster;
+
+        public SignalBooster Booster
+        {
+            get => booster;
+            set => booster = value;
+        }
 
         #endregion
 
@@ -54,15 +61,6 @@ namespace Player
         {
             Move();
             SwitchControlToReceiver();
-        }
-
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Spike"))
-            {
-                Debug.Log("spike hurt");
-                GameController.Instance.DecreaseLife(1);
-            }
         }
 
         private void OnCollisionStay2D(Collision2D other)
@@ -97,6 +95,13 @@ namespace Player
                 var sprite = other.GetComponent<SpriteRenderer>();
                 if (!receiver.isSelected) sprite.color = inFieldColor;
             }
+
+            if (other.CompareTag("SignalBooster"))
+            {
+                booster = other.GetComponent<SignalBooster>();
+                booster.IsActivated = true;
+                booster.GetComponent<SpriteRenderer>().sprite = booster.ColorSprite;
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -113,6 +118,14 @@ namespace Player
 
                 switchCount = 0;
                 tempCount = 0;
+            }
+            
+            if (other.CompareTag("SignalBooster"))
+            {
+                booster.IsActivated = false;
+                booster.GetComponent<SpriteRenderer>().sprite = booster.WhiteSprite;
+
+                booster = null;
             }
         }
 

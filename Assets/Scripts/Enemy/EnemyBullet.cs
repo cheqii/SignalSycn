@@ -54,6 +54,11 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+        
         if (other.gameObject.CompareTag("Receiver"))
         {
             if (other.gameObject.GetComponent<ReceiverObject>().isSelected)

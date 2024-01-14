@@ -38,7 +38,6 @@ public class HoldableObject : MonoBehaviour
         if (other.CompareTag("DroneClaw"))
         {
             canHold = false;
-            rb.isKinematic = false;
         }
     }
 
@@ -52,14 +51,17 @@ public class HoldableObject : MonoBehaviour
                 if (!canRelease)
                 {
                     canRelease = true;
-                    rb.gravityScale = 0;
+                    // rb.gravityScale = 0;
+                    rb.isKinematic = true;
+                    rb.bodyType = RigidbodyType2D.Static;
                     droneObj.GetComponentInParent<Drone>().IsHolding = true;
                     gameObject.transform.SetParent(droneObj.transform);
                 }
                 else
                 {
                     canRelease = false;
-                    rb.gravityScale = 1;
+                    // rb.gravityScale = 1;
+                    rb.isKinematic = false;
                     droneObj.GetComponentInParent<Drone>().IsHolding = false;
                     gameObject.transform.SetParent(null);
                 }

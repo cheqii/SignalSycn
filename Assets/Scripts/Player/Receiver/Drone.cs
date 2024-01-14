@@ -71,6 +71,9 @@ public class Drone : ReceiverObject
             {
                 gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
                 gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
+                pocket.pocketControl = true;
+                GameController.Instance.isPocket = true;
+                pocket.GetComponent<SpriteRenderer>().color = controlColor;
             }
                 
         }

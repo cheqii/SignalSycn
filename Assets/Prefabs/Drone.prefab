@@ -61,7 +61,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -212,7 +212,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 2.6601007
+  m_Mass: 1.8747025
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -253,5 +253,6 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  receiverData: {fileID: 11400000, guid: ec6bf5eb1768a554da5eefdac16c4c60, type: 2}
   isSelected: 0
+  isHolding: 0
+  isFlying: 0

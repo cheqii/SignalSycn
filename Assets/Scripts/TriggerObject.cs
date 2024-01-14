@@ -6,6 +6,15 @@ using UnityEngine;
 public class TriggerObject : MonoBehaviour
 {
     [SerializeField] private GameObject getEffectObject;
+
+    public GameObject GetEffectObject
+    {
+        get => getEffectObject;
+        set => getEffectObject = value;
+    }
+
+    public bool triggerWork;
+    
     [SerializeField] private bool canTrigger;
     private SpriteRenderer sprite;
 
@@ -23,6 +32,7 @@ public class TriggerObject : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 sprite.flipX = false;
+                triggerWork = true;
                 TriggerDestroyObject(getEffectObject);
             }
         }
@@ -46,6 +56,7 @@ public class TriggerObject : MonoBehaviour
 
     void TriggerDestroyObject(GameObject go)
     {
-        Destroy(go, 0.5f);
+        
+        Destroy(go, 1f);
     }
 }

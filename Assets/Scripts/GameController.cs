@@ -1,12 +1,17 @@
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
+
+    private int currentSceneIndex;
+    
+    private PocketSignal pocket;
 
     [Header("Pocket Signal")]
     public bool isPocket;
@@ -16,11 +21,16 @@ public class GameController : MonoBehaviour
 
     [Header("Player Life")]
     public int maxLife;
+
     public int currentLife;
 
     public List<Image> heartImage;
 
-    private PocketSignal pocket;
+
+    [Header("GameOver Stuff")]
+    public GameObject gameOverPage;
+    public bool isOver;
+    public Light2D light;
 
     private void Awake()
     {
@@ -30,6 +40,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        
         currentLife = maxLife;
         
         isPocket = true;
@@ -41,6 +53,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RestartAGameLevel();
         if(pocket == null) return;
         GameIsOver();
     }
@@ -66,7 +79,33 @@ public class GameController : MonoBehaviour
 
     public void GameIsOver()
     {
-        if(currentLife <= 0) Destroy(pocket.gameObject);
+        if (currentLife <= 0 && !isOver)
+        {
+            isOver = true;
+            Destroy(pocket.gameObject);
+        }
+
+        if (isOver)
+        {
+            if (light != null)
+            {
+                Destroy(light);
+            }
+            gameOverPage.SetActive(true);
+        }
+    }
+
+    void RestartAGameLevel()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && pocket == null)
+        {
+            SceneManager.LoadSceneAsync(currentSceneIndex);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && pocket != null)
+        {
+            SceneManager.LoadSceneAsync(currentSceneIndex);
+        }
     }
 
     public void NextLevelScene()

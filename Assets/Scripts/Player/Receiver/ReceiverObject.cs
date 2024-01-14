@@ -12,6 +12,8 @@ namespace Player
 
         public bool isSelected;
 
+        public bool inField;
+
         protected PocketSignal pocket;
 
         #endregion
@@ -42,13 +44,20 @@ namespace Player
         {
             if (other.CompareTag("SignalField"))
             {
-                if (!isSelected) // check if receiver stay in field its will be yellow!
+                inField = true;
+                
+                if (!isSelected && inField) // check if receiver stay in field its will be yellow!
                 {
-                    // Debug.Log("is not select brooo please yellow");
                     gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
                     gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                 }
 
+                if (!isSelected && !inField)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().color = normalColor;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
+                }
+                
                 // if have another receiver exit field but selected receiver is still in field
                 if (isSelected && GameController.Instance.isReceiver || isSelected && !GameController.Instance.isReceiver)
                 {
@@ -64,6 +73,7 @@ namespace Player
             if (other.CompareTag("SignalField"))
             {
                 isSelected = false;
+                inField = false;
                 
                 if (pocket.pocketControl) // left receiver in field is exit from fields
                 {
@@ -73,14 +83,19 @@ namespace Player
 
                 if (!isSelected)
                 {
+                    inField = false;
                     gameObject.GetComponent<SpriteRenderer>().color = normalColor;
                     gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                 }
 
                 if(!isSelected && !pocket.pocketControl)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
-                    gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
+                    // gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
+                    // gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
+                    
+                    pocket.pocketControl = true;
+                    GameController.Instance.isPocket = true;
+                    pocket.GetComponent<SpriteRenderer>().color = controlColor;
                 }
                 
             }

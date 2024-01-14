@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using DefaultNamespace;
 using Player;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class RobotGunner : Enemy
@@ -54,20 +51,48 @@ public class RobotGunner : Enemy
     {
         if (other.CompareTag("Receiver"))
         {
-            robotSprite.sprite = enemyData.colorSprite;
             if (other.GetComponent<ReceiverObject>().isSelected)
             {
+                robotSprite.sprite = enemyData.colorSprite;
                 Debug.Log($"Found {other.gameObject.name}");
                 foundPlayer = true;
                 target = other.gameObject;
             }
+            else foundPlayer = false;
         }
         
         if (other.CompareTag("PocketSignal"))
         {
-            robotSprite.sprite = enemyData.colorSprite;
             if (GameController.Instance.isPocket)
             {
+                robotSprite.sprite = enemyData.colorSprite;
+                Debug.Log($"Found {other.gameObject.name}");
+                foundPlayer = true;
+                target = other.gameObject;
+            }
+            else foundPlayer = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Receiver"))
+        {
+            if (other.GetComponent<ReceiverObject>().isSelected)
+            {
+                robotSprite.sprite = enemyData.colorSprite;
+                Debug.Log($"Found {other.gameObject.name}");
+                foundPlayer = true;
+                target = other.gameObject;
+            }
+            else foundPlayer = false;
+        }
+        
+        if (other.CompareTag("PocketSignal"))
+        {
+            if (GameController.Instance.isPocket)
+            {
+                robotSprite.sprite = enemyData.colorSprite;
                 Debug.Log($"Found {other.gameObject.name}");
                 foundPlayer = true;
                 target = other.gameObject;

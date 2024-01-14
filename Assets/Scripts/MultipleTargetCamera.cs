@@ -19,11 +19,14 @@ public class MultipleTargetCamera : MonoBehaviour
 
     private Camera cam;
 
+    private TriggerObject trigger;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         pocket = FindObjectOfType<PocketSignal>();
+        trigger = FindObjectOfType<TriggerObject>();
         targetPlayer.Add(pocket.transform);
     }
 
@@ -52,11 +55,31 @@ public class MultipleTargetCamera : MonoBehaviour
         {
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, minZoom, Time.deltaTime);
         }
+        
+        if (pocket.Booster != null)
+        {
+            if (pocket.Booster.IsActivated) cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, minZoom, Time.deltaTime);
+        }
+
+        if (pocket == null)
+        {
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 12f, Time.deltaTime);
+        }
     }
 
     Vector3 FollowPlayerSignal()
     {
         if (pocket == null) return Vector3.zero;
+
+        if (trigger != null)
+        {
+            if (trigger.triggerWork && trigger.GetEffectObject != null)
+                return trigger.GetEffectObject.transform.position;
+        }
+        if (pocket.Booster != null)
+        {
+            if(pocket.Booster.IsActivated && GameController.Instance.isPocket) return pocket.Booster.transform.position;
+        }
         if (GameController.Instance.isPocket)
         {
             return pocket.transform.position;
@@ -75,7 +98,6 @@ public class MultipleTargetCamera : MonoBehaviour
                 }
             }
         }
-
         return Vector3.zero;
     }
 }
