@@ -136,6 +136,7 @@ public class RobotGunner : Enemy
         else
         {
             // Debug.Log("Enemy Attack");
+            SoundManager.Instance.Play("EnemyShoot");
             var bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
             Destroy(bullet, 1f);
             isFire = false;

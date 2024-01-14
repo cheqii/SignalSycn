@@ -8,6 +8,7 @@ public class FlagPoint : MonoBehaviour
         if (other.CompareTag("PocketSignal"))
         {
             Debug.Log("Go to next stage");
+            SoundManager.Instance.Play("NextLevel");
             GameController.Instance.NextLevelScene();
         }
     }

@@ -48,12 +48,12 @@ public class HoldableObject : MonoBehaviour
         {
             if (canHold)
             {
+                SoundManager.Instance.Play("DroneGrab");
                 if (!canRelease)
                 {
                     canRelease = true;
                     // rb.gravityScale = 0;
                     rb.isKinematic = true;
-                    rb.bodyType = RigidbodyType2D.Static;
                     droneObj.GetComponentInParent<Drone>().IsHolding = true;
                     gameObject.transform.SetParent(droneObj.transform);
                 }
@@ -70,6 +70,7 @@ public class HoldableObject : MonoBehaviour
 
         if (!droneObj.GetComponentInParent<Drone>().IsHolding || !droneObj.GetComponentInParent<Drone>().isSelected)
         {
+            
             canRelease = false;
             rb.isKinematic = false;
             droneObj.GetComponentInParent<Drone>().IsHolding = false;

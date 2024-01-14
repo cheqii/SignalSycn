@@ -63,6 +63,7 @@ public class EnemyBullet : MonoBehaviour
         {
             if (other.gameObject.GetComponent<ReceiverObject>().isSelected)
             {
+                SoundManager.Instance.Play("TakeDamage");
                 enemyShooter.FoundPlayer = false;
                 other.gameObject.GetComponent<ReceiverObject>().isSelected = false;
                 pocket.pocketControl = true;
@@ -77,6 +78,7 @@ public class EnemyBullet : MonoBehaviour
 
         if (other.gameObject.CompareTag("PocketSignal"))
         {
+            SoundManager.Instance.Play("TakeDamage");
             if (GameController.Instance.isPocket)
             {
                 GameController.Instance.DecreaseLife(1);

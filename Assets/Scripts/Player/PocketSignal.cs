@@ -98,6 +98,7 @@ namespace Player
 
             if (other.CompareTag("SignalBooster"))
             {
+                SoundManager.Instance.Play("Found");
                 booster = other.GetComponent<SignalBooster>();
                 booster.IsActivated = true;
                 booster.GetComponent<SpriteRenderer>().sprite = booster.ColorSprite;
@@ -172,6 +173,7 @@ namespace Player
                     {
                         case true:
                         {
+                            SoundManager.Instance.Play("Switch");
                             if (switchCount < receiverList.Count)
                             {
                                 Debug.Log("Switch Control to Receiver");
@@ -204,7 +206,7 @@ namespace Player
                         case false:
                         {
                             Debug.Log("Check Return to Pocket Signal");
-                            
+                            SoundManager.Instance.Play("Switch");
                             GameController.Instance.isPocket = true;
                             GameController.Instance.isReceiver = false;
                             try

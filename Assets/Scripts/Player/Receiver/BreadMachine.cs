@@ -39,7 +39,7 @@ public class BreadMachine : ReceiverObject
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log("Shoot!!!");
-                
+                SoundManager.Instance.Play("BreadBullet");
                 var bread = Instantiate(breadBullet, shootPoint.position, shootPoint.rotation);
                 
                 Destroy(bread, 1f);

@@ -74,7 +74,7 @@ namespace Player
             {
                 isSelected = false;
                 inField = false;
-                
+
                 if (pocket.pocketControl) // left receiver in field is exit from fields
                 {
                     GameController.Instance.isPocket = true;

@@ -35,6 +35,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            SoundManager.Instance.Play("Robot");
             Destroy(other.gameObject);
         }
     }

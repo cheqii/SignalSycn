@@ -18,6 +18,8 @@ public class TriggerObject : MonoBehaviour
     [SerializeField] private bool canTrigger;
     private SpriteRenderer sprite;
 
+    private int i = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +33,19 @@ public class TriggerObject : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
+                SoundManager.Instance.Play("TriggerLever");
                 sprite.flipX = false;
                 triggerWork = true;
                 TriggerDestroyObject(getEffectObject);
+            }
+        }
+
+        if (i < 1) // play for one times
+        {
+            if (getEffectObject == null)
+            {
+                i++;
+                SoundManager.Instance.Play("Destroy");
             }
         }
     }
@@ -56,7 +68,6 @@ public class TriggerObject : MonoBehaviour
 
     void TriggerDestroyObject(GameObject go)
     {
-        
-        Destroy(go, 1f);
+        Destroy(go, 2f);
     }
 }
