@@ -81,7 +81,7 @@ public class EnemyBullet : MonoBehaviour
             SoundManager.Instance.Play("TakeDamage");
             if (GameController.Instance.isPocket)
             {
-                GameController.Instance.DecreaseLife(1);
+                Destroy(other.gameObject);
             }
             Destroy(gameObject);
         }

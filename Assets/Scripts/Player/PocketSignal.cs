@@ -114,8 +114,11 @@ namespace Player
                 other.GetComponent<SpriteRenderer>().color = normalColor;
 
                 gameObject.GetComponent<SpriteRenderer>().color = controlColor;
-                GameController.Instance.isPocket = true;
-                GameController.Instance.isReceiver = false;
+                // GameController.Instance.isPocket = true;
+                // GameController.Instance.isReceiver = false;
+                
+                GameController.Instance.isPocketDelay = true;
+                StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
 
                 switchCount = 0;
                 tempCount = 0;
@@ -173,10 +176,10 @@ namespace Player
                     {
                         case true:
                         {
-                            SoundManager.Instance.Play("Switch");
                             if (switchCount < receiverList.Count)
                             {
                                 Debug.Log("Switch Control to Receiver");
+                                SoundManager.Instance.Play("Switch");
                                 GameController.Instance.isPocket = false;
                                 GameController.Instance.isReceiver = true;
 
@@ -196,6 +199,7 @@ namespace Player
 
                             if (switchCount >= receiverList.Count)
                             {
+                                SoundManager.Instance.Play("Switch");
                                 switchCount = 0;
                                 pocketControl = false;
                             }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
@@ -12,9 +13,10 @@ public class GameController : MonoBehaviour
     private int currentSceneIndex;
     
     private PocketSignal pocket;
-
+    
     [Header("Pocket Signal")]
     public bool isPocket;
+    public bool isPocketDelay;
 
     [Header("Receiver")]
     public bool isReceiver;
@@ -54,7 +56,6 @@ public class GameController : MonoBehaviour
     void Update()
     {
         RestartAGameLevel();
-        if(pocket == null) return;
         GameIsOver();
     }
 
@@ -75,18 +76,28 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public IEnumerator PlayerControllerDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Debug.Log($"Player {delay} ????");
+        isPocket = true;
+        isReceiver = false;
+        isPocketDelay = false;
+    }
+    // public void PlayerControllerDelay()
+    // {
+    //     Debug.Log("Player delay");
+    //     isPocket = true;
+    //     isReceiver = false;
+    // }
+    
     #endregion
 
     public void GameIsOver()
     {
-        if (currentLife <= 0 && !isOver)
+        if (pocket == null && !isOver)
         {
             isOver = true;
-            Destroy(pocket.gameObject);
-        }
-
-        if (isOver)
-        {
             if (light != null)
             {
                 Destroy(light);

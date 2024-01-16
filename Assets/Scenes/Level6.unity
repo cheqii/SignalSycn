@@ -235,6 +235,9 @@ MonoBehaviour:
   - {fileID: 1254213669}
   - {fileID: 1190088118}
   - {fileID: 304549834}
+  gameOverPage: {fileID: 0}
+  isOver: 0
+  light: {fileID: 0}
 --- !u!4 &506454844
 Transform:
   m_ObjectHideFlags: 0
@@ -502,7 +505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &934573350
 RectTransform:
   m_ObjectHideFlags: 0

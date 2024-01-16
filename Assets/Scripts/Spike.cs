@@ -8,21 +8,14 @@ public class Spike : MonoBehaviour
         if (other.gameObject.CompareTag("PocketSignal"))
         {
             Debug.Log("spike hurt");
-            GameController.Instance.DecreaseLife(1);
+            SoundManager.Instance.Play("TakeDamage");
+            Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("Receiver"))
         {
+            SoundManager.Instance.Play("TakeDamage");
             Destroy(other.gameObject);
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("PocketSignal"))
-        {
-            Debug.Log("spike hurt");
-            GameController.Instance.DecreaseLife(1);
         }
     }
 }

@@ -565,7 +565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &934573350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1141,31 +1141,31 @@ MonoBehaviour:
   sounds:
   - name: BGM
     clip: {fileID: 8300000, guid: 719f482b4faa5f54096c3eefa0f61f88, type: 3}
-    volume: 0.1
+    volume: 0.15
     pitch: 1
     loops: 1
     source: {fileID: 0}
   - name: BreadBullet
     clip: {fileID: 8300000, guid: 1a4f3e482b80fb945b882304587c2efd, type: 3}
-    volume: 0.5
+    volume: 0.15
     pitch: 1
     loops: 0
     source: {fileID: 0}
   - name: Switch
     clip: {fileID: 8300000, guid: a87b669a9328f1741bc5b0ce3268ad96, type: 3}
-    volume: 0.2
+    volume: 0.1
     pitch: 1
     loops: 0
     source: {fileID: 0}
   - name: NextLevel
     clip: {fileID: 8300000, guid: a4e382b2ac7ebeb48aaf5d91468e3b01, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     loops: 0
     source: {fileID: 0}
   - name: TriggerLever
     clip: {fileID: 8300000, guid: 27828bc7276622d4e9776db8cdcd7ccf, type: 3}
-    volume: 0.5
+    volume: 0.15
     pitch: 1
     loops: 0
     source: {fileID: 0}
@@ -1189,19 +1189,19 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: EnemyShoot
     clip: {fileID: 8300000, guid: f81e452da28fd014ebf4d0b6a31bac15, type: 3}
-    volume: 0.5
+    volume: 0.25
     pitch: 1
     loops: 0
     source: {fileID: 0}
   - name: TakeDamage
     clip: {fileID: 8300000, guid: 3ceb987b675aafe41aff480ab40aca85, type: 3}
-    volume: 0.5
+    volume: 0.2
     pitch: 1
     loops: 0
     source: {fileID: 0}
   - name: Robot
     clip: {fileID: 8300000, guid: 97758d5bdbf90c44f8494c43c6d23f2c, type: 3}
-    volume: 0.5
+    volume: 0.05
     pitch: 1
     loops: 0
     source: {fileID: 0}

@@ -77,7 +77,9 @@ namespace Player
 
                 if (pocket.pocketControl) // left receiver in field is exit from fields
                 {
-                    GameController.Instance.isPocket = true;
+                    // GameController.Instance.isPocket = true;
+                    GameController.Instance.isPocketDelay = true;
+                    StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
                     if (!GameController.Instance.isReceiver) pocket.GetComponent<SpriteRenderer>().color = controlColor;
                 }
 
@@ -94,7 +96,9 @@ namespace Player
                     // gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                     
                     pocket.pocketControl = true;
-                    GameController.Instance.isPocket = true;
+                    // GameController.Instance.isPocket = true;
+                    GameController.Instance.isPocketDelay = true;
+                    StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
                     pocket.GetComponent<SpriteRenderer>().color = controlColor;
                 }
                 

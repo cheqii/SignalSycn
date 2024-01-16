@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
-
 public class MultipleTargetCamera : MonoBehaviour
 {
     public List<Transform> targetPlayer;
@@ -16,10 +15,10 @@ public class MultipleTargetCamera : MonoBehaviour
     public float maxZoom;
 
     private PocketSignal pocket;
-
     private Camera cam;
-
     private TriggerObject trigger;
+
+    public bool switchCamToPocket;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +27,19 @@ public class MultipleTargetCamera : MonoBehaviour
         pocket = FindObjectOfType<PocketSignal>();
         trigger = FindObjectOfType<TriggerObject>();
         targetPlayer.Add(pocket.transform);
+    }
+
+    private void Update()
+    {
+        if (pocket.Booster == null) switchCamToPocket = false;
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (switchCamToPocket) switchCamToPocket = false;
+                else switchCamToPocket = true;
+            }
+        }
     }
 
     private void LateUpdate()
@@ -70,7 +82,7 @@ public class MultipleTargetCamera : MonoBehaviour
     Vector3 FollowPlayerSignal()
     {
         if (pocket == null) return Vector3.zero;
-
+        
         if (trigger != null)
         {
             if (trigger.triggerWork && trigger.GetEffectObject != null)
@@ -78,9 +90,29 @@ public class MultipleTargetCamera : MonoBehaviour
         }
         if (pocket.Booster != null)
         {
-            if(pocket.Booster.IsActivated && GameController.Instance.isPocket) return pocket.Booster.transform.position;
+            if (pocket.Booster.IsActivated && GameController.Instance.isPocket)
+            {
+                // if signal booster != null and activated then we can switch cam position between pocket and booster
+                if (!switchCamToPocket)
+                {
+                    return pocket.Booster.transform.position;
+                }
+
+                if (switchCamToPocket)
+                {
+                    return pocket.transform.position;
+                }
+            }
         }
-        if (GameController.Instance.isPocket)
+
+        if (!GameController.Instance.isPocket 
+            && GameController.Instance.isReceiver 
+            && GameController.Instance.isPocketDelay)
+        {
+            // if (pocket is delay after receiver is exit from field)
+            return pocket.transform.position;
+        }
+        if (GameController.Instance.isPocket && pocket.Booster == null)
         {
             return pocket.transform.position;
         }
@@ -92,7 +124,6 @@ public class MultipleTargetCamera : MonoBehaviour
                 {
                     if (list.isSelected)
                     {
-                        // Debug.Log($"{list.gameObject.name} is target by cam");
                         return list.transform.position; // if  receiver is select return position to focus
                     }
                 }
