@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5897407899361612604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 858247285031757540}
+  - component: {fileID: 2779676190130766553}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &858247285031757540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5897407899361612604}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.2021885, y: -2.5104003, z: 2436.6904}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2779676190130766553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5897407899361612604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e6009a2e78c8441a1b8a7e031ef4e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BGM
+    clip: {fileID: 8300000, guid: 719f482b4faa5f54096c3eefa0f61f88, type: 3}
+    volume: 0.15
+    pitch: 1
+    loops: 1
+    source: {fileID: 0}
+  - name: BreadBullet
+    clip: {fileID: 8300000, guid: 1a4f3e482b80fb945b882304587c2efd, type: 3}
+    volume: 0.15
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
+  - name: Switch
+    clip: {fileID: 8300000, guid: a87b669a9328f1741bc5b0ce3268ad96, type: 3}
+    volume: 0.1
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
+  - name: NextLevel
+    clip: {fileID: 8300000, guid: a4e382b2ac7ebeb48aaf5d91468e3b01, type: 3}
+    volume: 0.3
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
+  - name: TriggerLever
+    clip: {fileID: 8300000, guid: 27828bc7276622d4e9776db8cdcd7ccf, type: 3}
+    volume: 0.15
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
+  - name: DroneGrab
+    clip: {fileID: 8300000, guid: 88475442b6b10124881c9b4901ec8b2f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
+  - name: Destroy
+    clip: {fileID: 8300000, guid: 7c93092ed2b88374794bb6c6d5f4986f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
+  - name: Found
+    clip: {fileID: 8300000, guid: 72cf0f7a942ce4845b6b3920ee79e806, type: 3}
+    volume: 0.5
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
+  - name: EnemyShoot
+    clip: {fileID: 8300000, guid: f81e452da28fd014ebf4d0b6a31bac15, type: 3}
+    volume: 0.25
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
+  - name: TakeDamage
+    clip: {fileID: 8300000, guid: 3ceb987b675aafe41aff480ab40aca85, type: 3}
+    volume: 0.2
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
+  - name: Robot
+    clip: {fileID: 8300000, guid: 97758d5bdbf90c44f8494c43c6d23f2c, type: 3}
+    volume: 0.05
+    pitch: 1
+    loops: 0
+    source: {fileID: 0}
