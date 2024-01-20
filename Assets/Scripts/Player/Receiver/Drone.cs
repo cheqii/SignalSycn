@@ -5,7 +5,9 @@ using UnityEngine;
 public class Drone : ReceiverObject
 {
     [SerializeField] private bool isHolding;
-    public bool isFlying;
+    
+    [Header("Holdable Object")]
+    public HoldableObject holdableObject;
     public bool IsHolding
     {
         get => isHolding;
@@ -32,7 +34,6 @@ public class Drone : ReceiverObject
             || other.gameObject.CompareTag("Receiver"))
         {
             onGround = true;
-            isFlying = true;
         }
     }
 
@@ -53,16 +54,16 @@ public class Drone : ReceiverObject
             isSelected = false;
             isHolding = false;
             // pocket.pocketControl = true;
-                
+            
             if (pocket.pocketControl) // left receiver in field is exit from fields
             {
-                // GameController.Instance.isPocket = true;
-                GameController.Instance.isPocketDelay = true;
-                StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
+                GameController.Instance.isPocket = true;
+                // GameController.Instance.isPocketDelay = true;
+                // StartCoroutine(GameController.Instance.PlayerControllerDelay(GameController.Instance.pocketDelay));
                 if (!GameController.Instance.isReceiver) pocket.GetComponent<SpriteRenderer>().color = controlColor;
             }
 
-            if (!isSelected)
+            if (!isSelected) 
             {
                 gameObject.GetComponent<SpriteRenderer>().color = normalColor;
                 gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
@@ -75,7 +76,7 @@ public class Drone : ReceiverObject
                 pocket.pocketControl = true;
                 // GameController.Instance.isPocket = true;
                 GameController.Instance.isPocketDelay = true;
-                StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
+                StartCoroutine(GameController.Instance.PlayerControllerDelay(GameController.Instance.pocketDelay));
                 pocket.GetComponent<SpriteRenderer>().color = controlColor;
             }
                 
@@ -87,29 +88,40 @@ public class Drone : ReceiverObject
         if (GameController.Instance.isReceiver && isSelected)
         {
             rb.gravityScale = 0;
-            
+
             float horizontalInput = Input.GetAxisRaw("Horizontal");
-
-            Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
-
+            float verticalInput = Input.GetAxisRaw("Vertical");
+            
+            Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
+            
             if (horizontalInput < 0) gameObject.GetComponent<SpriteRenderer>().flipX = true;
-
+            
             if (horizontalInput > 0) gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
+            if (isHolding)
+            {
+                holdableObject = transform.GetChild(0).GetComponentInChildren<HoldableObject>();
+                
+                if(holdableObject != null) 
+                    holdableObject.transform.localPosition = Vector3.zero;
+            }
+            
             transform.Translate(movement * speed * Time.deltaTime);
             
-            if (Input.GetKey(KeyCode.W))
-            {
-                transform.position += new Vector3(0, 1 * speed * Time.deltaTime, 0f);
-            }
-
-            if (Input.GetKey(KeyCode.S))
-            {
-                transform.position += new Vector3(0, -1 * speed * Time.deltaTime, 0f);
-            }
+            
+            // if (Input.GetKey(KeyCode.W))
+            // {
+            //     transform.position += new Vector3(0f, 1f * speed * Time.deltaTime, 0f);
+            // }
+            //
+            // if (Input.GetKey(KeyCode.S))
+            // {
+            //     transform.position += new Vector3(0f, -1f * speed * Time.deltaTime, 0f);
+            // }
         }
         else
         {
+            // rb.isKinematic = false;
             rb.gravityScale = 1;
         }
     }

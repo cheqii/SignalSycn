@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPocket: 0
   isPocketDelay: 0
+  pocketDelay: 1.5
   isReceiver: 0
   maxLife: 3
   currentLife: 0

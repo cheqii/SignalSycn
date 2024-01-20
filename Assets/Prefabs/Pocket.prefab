@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalScale: {x: 16, y: 16, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1828493233578171833}
@@ -285,12 +285,13 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
-  signalRange: 6
+  signalRange: 8
   receiverList: []
   foundReceiver: 0
   pocketControl: 0
   switchCount: 0
   tempCount: 0
+  booster: {fileID: 0}
 --- !u!1 &7927121346150436494
 GameObject:
   m_ObjectHideFlags: 0

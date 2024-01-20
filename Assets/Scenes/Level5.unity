@@ -329,6 +329,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 8648592418827171866, guid: d8937edab4de5594e99fa701e3393623, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648592418827171866, guid: d8937edab4de5594e99fa701e3393623, type: 3}
+      propertyPath: m_LinearDrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648592418827171866, guid: d8937edab4de5594e99fa701e3393623, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -445,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5897407899361612604, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -630,6 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPocket: 0
   isPocketDelay: 0
+  pocketDelay: 1.5
   isReceiver: 0
   maxLife: 3
   currentLife: 0
@@ -1024,7 +1037,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1659026648112586166, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659026648112586166, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659026648112586166, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659026648112586166, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: m_UseAutoMass
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1659026648112586166, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
@@ -1038,6 +1063,10 @@ PrefabInstance:
     - target: {fileID: 3441465917790407763, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_Name
       value: Drone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7824407786221663672, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

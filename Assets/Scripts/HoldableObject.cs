@@ -8,9 +8,7 @@ public class HoldableObject : MonoBehaviour
     [SerializeField] private GameObject droneObj;
 
     [SerializeField] private bool canRelease;
-
-    private bool checkDroneHold;
-
+    
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -52,16 +50,17 @@ public class HoldableObject : MonoBehaviour
                 if (!canRelease)
                 {
                     canRelease = true;
-                    // rb.gravityScale = 0;
-                    rb.isKinematic = true;
+                    rb.gravityScale = 0f;
+                    rb.mass = 0f;
                     droneObj.GetComponentInParent<Drone>().IsHolding = true;
                     gameObject.transform.SetParent(droneObj.transform);
+                    print($"local pos : {gameObject.transform.localPosition}");
                 }
                 else
                 {
                     canRelease = false;
-                    // rb.gravityScale = 1;
-                    rb.isKinematic = false;
+                    rb.gravityScale = 1f;
+                    rb.mass = 1f;
                     droneObj.GetComponentInParent<Drone>().IsHolding = false;
                     gameObject.transform.SetParent(null);
                 }
@@ -70,7 +69,6 @@ public class HoldableObject : MonoBehaviour
 
         if (!droneObj.GetComponentInParent<Drone>().IsHolding || !droneObj.GetComponentInParent<Drone>().isSelected)
         {
-            
             canRelease = false;
             rb.isKinematic = false;
             droneObj.GetComponentInParent<Drone>().IsHolding = false;

@@ -233,7 +233,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPocket: 0
-  pocketDelay: 0
+  isPocketDelay: 0
+  pocketDelay: 1.5
   isReceiver: 0
   maxLife: 3
   currentLife: 0
@@ -243,7 +244,7 @@ MonoBehaviour:
   - {fileID: 304549834}
   gameOverPage: {fileID: 1920623176}
   isOver: 0
-  light: {fileID: 0}
+  attachedLight: {fileID: 0}
 --- !u!4 &506454844
 Transform:
   m_ObjectHideFlags: 0
@@ -4342,18 +4343,6 @@ PrefabInstance:
     - target: {fileID: 4580299913648406861, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
       propertyPath: m_Name
       value: Pocket
-      objectReference: {fileID: 0}
-    - target: {fileID: 5271987931435291052, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5271987931435291052, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
-      propertyPath: signalRange
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

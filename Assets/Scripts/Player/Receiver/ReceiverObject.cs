@@ -77,20 +77,20 @@ namespace Player
 
                 if (pocket.pocketControl) // left receiver in field is exit from fields
                 {
-                    // GameController.Instance.isPocket = true;
-                    GameController.Instance.isPocketDelay = true;
-                    StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
+                    GameController.Instance.isPocket = true;
+                    // GameController.Instance.isPocketDelay = true;
+                    // StartCoroutine(GameController.Instance.PlayerControllerDelay(GameController.Instance.pocketDelay));
                     if (!GameController.Instance.isReceiver) pocket.GetComponent<SpriteRenderer>().color = controlColor;
                 }
 
-                if (!isSelected)
+                if (!isSelected) // if object is not select but still in field
                 {
                     inField = false;
                     gameObject.GetComponent<SpriteRenderer>().color = normalColor;
                     gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                 }
 
-                if(!isSelected && !pocket.pocketControl)
+                if(!isSelected && !pocket.pocketControl) // if controlling is out of field
                 {
                     // gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
                     // gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
@@ -98,7 +98,7 @@ namespace Player
                     pocket.pocketControl = true;
                     // GameController.Instance.isPocket = true;
                     GameController.Instance.isPocketDelay = true;
-                    StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
+                    StartCoroutine(GameController.Instance.PlayerControllerDelay(GameController.Instance.pocketDelay));
                     pocket.GetComponent<SpriteRenderer>().color = controlColor;
                 }
                 

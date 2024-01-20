@@ -2951,6 +2951,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2030292837554167403, guid: ab327a52f7b4c024bb34ce7ae449ad4e, type: 3}
+      propertyPath: pocketDelay
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2030292837554167403, guid: ab327a52f7b4c024bb34ce7ae449ad4e, type: 3}
       propertyPath: gameOverPage
       value: 
       objectReference: {fileID: 1848075570}
