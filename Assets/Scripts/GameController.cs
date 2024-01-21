@@ -93,6 +93,14 @@ public class GameController : MonoBehaviour
     //     isReceiver = false;
     // }
     
+    // Particle Method
+    public IEnumerator SetStopParticle(float time, ParticleSystem particle)
+    {
+        particle.Play();
+        yield return new WaitForSeconds(time);
+        particle.Stop();
+    }
+    
     #endregion
 
     public void GameIsOver()

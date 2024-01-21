@@ -17,6 +17,7 @@ TagManager:
   - LeverSwitch
   - Spike
   - SignalBooster
+  - Bullet
   layers:
   - Default
   - TransparentFX

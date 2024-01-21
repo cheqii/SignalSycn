@@ -8,6 +8,7 @@ namespace Player
     {
         #region -Declared Variables-
 
+        [Header("Range")]
         [SerializeField] private float signalRange = 5f;
 
         public float SignalRange
@@ -43,10 +44,11 @@ namespace Player
 
         void Start()
         {
-
             pocketControl = true;
 
             onGround = true;
+            
+            originPos = transform.position;
 
             rb = GetComponent<Rigidbody2D>();
 

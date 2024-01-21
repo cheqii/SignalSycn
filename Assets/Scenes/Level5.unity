@@ -457,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5897407899361612604, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -652,7 +652,7 @@ MonoBehaviour:
   - {fileID: 304549834}
   gameOverPage: {fileID: 397828694}
   isOver: 0
-  light: {fileID: 0}
+  attachedLight: {fileID: 0}
 --- !u!4 &506454844
 Transform:
   m_ObjectHideFlags: 0

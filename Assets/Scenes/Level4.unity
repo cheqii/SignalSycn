@@ -4344,6 +4344,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pocket
       objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: shakeAmount
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: rotationSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: shakeDuration
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
