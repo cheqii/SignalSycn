@@ -22,6 +22,26 @@ public class HoldableObject : MonoBehaviour
         HoldObject();
     }
 
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            if (droneObj != null)
+            {
+                var clawDetect = droneObj.GetComponentInParent<Drone>();
+                if (clawDetect.IsHolding)
+                    transform.position = droneObj.transform.position;
+                canRelease = false;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+            canRelease = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("DroneClaw"))
@@ -46,7 +66,7 @@ public class HoldableObject : MonoBehaviour
         {
             if (canHold)
             {
-                SoundManager.Instance.Play("DroneGrab");
+                if(canHold && canRelease) SoundManager.Instance.Play("DroneGrab");
                 if (!canRelease)
                 {
                     canRelease = true;
@@ -54,7 +74,6 @@ public class HoldableObject : MonoBehaviour
                     rb.mass = 0f;
                     droneObj.GetComponentInParent<Drone>().IsHolding = true;
                     gameObject.transform.SetParent(droneObj.transform);
-                    print($"local pos : {gameObject.transform.localPosition}");
                 }
                 else
                 {

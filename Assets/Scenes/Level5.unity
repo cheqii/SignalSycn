@@ -1036,14 +1036,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1659026648112586166, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1659026648112586166, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3441465917790407763, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_Name
       value: Drone

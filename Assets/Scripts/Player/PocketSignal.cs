@@ -161,6 +161,7 @@ namespace Player
 
                 if (Input.GetKeyDown(KeyCode.Tab))
                 {
+                    if(receiverList.Count > 0) SoundManager.Instance.Play("Switch");
                     switch (pocketControl)
                     {
                         case true:
@@ -168,7 +169,7 @@ namespace Player
                             if (switchCount < receiverList.Count)
                             {
                                 print("Switch Control to Receiver");
-                                SoundManager.Instance.Play("Switch");
+                                // if(receiverList.Count > 0) SoundManager.Instance.Play("Switch");
                                 GameController.Instance.isPocket = false;
                                 GameController.Instance.isReceiver = true;
 
@@ -188,7 +189,7 @@ namespace Player
 
                             if (switchCount >= receiverList.Count)
                             {
-                                SoundManager.Instance.Play("Switch");
+                                // SoundManager.Instance.Play("Switch");
                                 switchCount = 0;
                                 pocketControl = false;
                             }
@@ -199,7 +200,7 @@ namespace Player
                         case false:
                         {
                             print("Check Return to Pocket Signal");
-                            SoundManager.Instance.Play("Switch");
+                            // SoundManager.Instance.Play("Switch");
                             GameController.Instance.isPocket = true;
                             GameController.Instance.isReceiver = false;
                             try
