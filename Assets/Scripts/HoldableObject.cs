@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class HoldableObject : MonoBehaviour
 {
@@ -65,8 +63,10 @@ public class HoldableObject : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (canHold)
-            {
-                if(canHold && canRelease) SoundManager.Instance.Play("DroneGrab");
+            { 
+                // if drone is not holding (and will hold by space) or drone holding items and can release. play sound
+                if(!droneObj.GetComponentInParent<Drone>().IsHolding || canRelease)
+                    SoundManager.Instance.Play("DroneGrab");
                 if (!canRelease)
                 {
                     canRelease = true;

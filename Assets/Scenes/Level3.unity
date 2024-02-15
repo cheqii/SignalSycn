@@ -4488,21 +4488,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone
       objectReference: {fileID: 0}
-    - target: {fileID: 3441465917790407763, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4402994479685747225, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_Radius
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402994479685747225, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7824407786221663672, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.73
+      value: -0.47
       objectReference: {fileID: 0}
     - target: {fileID: 8210978663280773438, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: shakeAmount
