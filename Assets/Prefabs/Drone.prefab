@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1501753880168495091}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.68, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 2688830917491693257}
   - component: {fileID: 1659026648112586166}
   - component: {fileID: 8210978663280773438}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Drone
   m_TagString: Receiver
   m_Icon: {fileID: 0}
@@ -211,8 +211,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 1.8747025
+  m_UseAutoMass: 0
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -225,7 +225,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &8210978663280773438
 MonoBehaviour:
@@ -241,6 +241,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 7
+  boxSize: {x: 0, y: 0}
+  castDistance: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   onGround: 0
   colorSprite: {fileID: 21300000, guid: 58310365a901dc3499ec92810c2e30bd, type: 3}
   whiteSprite: {fileID: 21300000, guid: b35ed8aa127f0354f969de1258c13fae, type: 3}
@@ -253,6 +258,10 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
+  rotationSpeed: 0
+  shakeAmount: 0
+  shakeDuration: 0
   isSelected: 0
+  inField: 0
   isHolding: 0
-  isFlying: 0
+  holdableObject: {fileID: 0}

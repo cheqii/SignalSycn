@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 9010780190404771546}
   - component: {fileID: 90637102715767640}
   - component: {fileID: 7965424444965271921}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pocket
   m_TagString: PocketSignal
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.043306112, y: 0.01598829}
+  m_Offset: {x: 0.028041124, y: 0.048783362}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -257,7 +257,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8094535, y: 1.5180205}
+  m_Size: {x: 0.95214796, y: 1.4524304}
   m_EdgeRadius: 0
 --- !u!114 &7965424444965271921
 MonoBehaviour:
@@ -273,6 +273,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 5
+  boxSize: {x: 0.75, y: 0.54}
+  castDistance: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1280
   onGround: 0
   colorSprite: {fileID: 0}
   whiteSprite: {fileID: 0}
@@ -285,6 +290,9 @@ MonoBehaviour:
   normalColor:
     serializedVersion: 2
     rgba: 4294967295
+  rotationSpeed: 50
+  shakeAmount: 0.25
+  shakeDuration: 0.1
   signalRange: 8
   receiverList: []
   foundReceiver: 0
@@ -358,4 +366,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 8

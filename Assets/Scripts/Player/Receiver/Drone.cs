@@ -24,6 +24,11 @@ public class Drone : ReceiverObject
     // Update is called once per frame
     void Update()
     {
+        GetInput();
+    }
+
+    void FixedUpdate()
+    {
         Move();
     }
 
@@ -71,8 +76,6 @@ public class Drone : ReceiverObject
 
             if(!isSelected && !pocket.pocketControl)
             {
-                // gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
-                // gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                 pocket.pocketControl = true;
                 // GameController.Instance.isPocket = true;
                 GameController.Instance.isPocketDelay = true;
@@ -83,15 +86,21 @@ public class Drone : ReceiverObject
         }
     }
 
-    public override void Move()
+    protected override void GetInput()
+    {
+        if (GameController.Instance.isReceiver && isSelected)
+        {
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+        }
+    }
+
+    protected override void Move()
     {
         if (GameController.Instance.isReceiver && isSelected)
         {
             rb.gravityScale = 0;
 
-            float horizontalInput = Input.GetAxisRaw("Horizontal");
-            float verticalInput = Input.GetAxisRaw("Vertical");
-            
             Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f);
             
             if (horizontalInput < 0) gameObject.GetComponent<SpriteRenderer>().flipX = true;
@@ -107,21 +116,9 @@ public class Drone : ReceiverObject
             }
             
             transform.Translate(movement * speed * Time.deltaTime);
-            
-            
-            // if (Input.GetKey(KeyCode.W))
-            // {
-            //     transform.position += new Vector3(0f, 1f * speed * Time.deltaTime, 0f);
-            // }
-            //
-            // if (Input.GetKey(KeyCode.S))
-            // {
-            //     transform.position += new Vector3(0f, -1f * speed * Time.deltaTime, 0f);
-            // }
         }
         else
         {
-            // rb.isKinematic = false;
             rb.gravityScale = 1;
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,11 +11,19 @@ namespace Player
         #region -Declared Variables-
 
         protected Rigidbody2D rb;
+
+        protected float horizontalInput;
+        protected float verticalInput;
         
         [SerializeField] protected float speed;
         [SerializeField] protected float jumpForce;
 
+        [Header("Ground Check Variables")]
+        [SerializeField] protected Vector2 boxSize;
+        [SerializeField] protected float castDistance;
+        [SerializeField] protected LayerMask groundLayer;
         [SerializeField] protected bool onGround;
+        
 
         public bool OnGround
         {
@@ -22,7 +31,7 @@ namespace Player
             set => onGround = value;
         }
 
-            [SerializeField] protected Sprite colorSprite;
+        [SerializeField] protected Sprite colorSprite;
 
         public Sprite ColorSprite
         {
@@ -66,66 +75,83 @@ namespace Player
         [SerializeField] protected float shakeAmount;
         [SerializeField] protected float shakeDuration;
 
-        protected Vector3 originPos;
+        protected Vector3 originRotation;
+        protected float shakeTimer;
         
         #endregion
 
         private void Start()
         {
-            originPos = transform.position;
+            originRotation = transform.eulerAngles;
         }
 
-        public virtual void Move()
+        protected virtual void GetInput()
         {
-            // // Rotate object around z axis
-            // transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
-            //
-            // if (shakeDuration > 0)
-            // {
-            //     // Generate random offset within a sphere and apply it to the object pos
-            //     transform.position = originPos + Random.insideUnitSphere * shakeAmount;
-            //     shakeDuration -= Time.deltaTime;
-            // }
-            // else
-            // {
-            //     // Reset to the original pos once the shake duration is over
-            //     shakeDuration = 0f;
-            //     // transform.position = originPos;
-            // }
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            
+            if(Input.GetKeyDown(KeyCode.W) && IsGrounded()
+               || Input.GetKeyDown(KeyCode.UpArrow) && IsGrounded())
+                rb.velocity = Vector2.up * jumpForce;
+        }
 
-            float horizontalInput = Input.GetAxisRaw("Horizontal");
+        private bool IsGrounded()
+        {
+            if (Physics2D.BoxCast(transform.position, boxSize, 0f, Vector2.down, castDistance, groundLayer))
+            {
+                return true;
+            }
+            
+            return false;
+        }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
+        }
+
+        protected virtual void Move()
+        {
             Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
 
             if (horizontalInput < 0)
             {
-                // StartShake(0.5f);
                 gameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
 
             if (horizontalInput > 0)
             {
-                // StartShake(0.5f);
                 gameObject.GetComponent<SpriteRenderer>().flipX = false;
             }
-            
+
             transform.Translate(movement * speed * Time.deltaTime);
 
-            if (Input.GetKeyDown(KeyCode.W))
+            // Rotate the player based on input
+            float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
+            transform.Rotate(Vector3.forward, rotationAmount);
+            
+            // Shake the player's rotation while moving
+            
+            if (Mathf.Abs(horizontalInput) > 0.1f && onGround)
             {
-                if (onGround)
+                if (shakeTimer <= 0)
                 {
-                    rb.velocity = Vector2.up * jumpForce;
-                    onGround = false;
+                    // Generate random offsets for the shake
+                    float shakeOffsetX = Random.Range(-1f, 1f) * shakeAmount;
+                    float shakeOffsetY = Random.Range(-1f, 1f) * shakeAmount;
+                    
+                    // Apply the shake offsets to the rotation
+                    transform.eulerAngles = new Vector3(originRotation.x + shakeOffsetX,
+                        originRotation.y + shakeOffsetY, rotationAmount);
+                    
+                    // Reset shake timer
+                    shakeTimer = shakeDuration; //
                 }
+            
+                shakeTimer -= Time.deltaTime;
             }
+            else transform.rotation = Quaternion.Euler(originRotation); // Reset to the original rotation while not moving
 
-            transform.rotation = Quaternion.identity;
-        }
-
-        public void StartShake(float duration)
-        {
-            shakeDuration = duration;
+            // transform.rotation = Quaternion.identity;
         }
     }
 }

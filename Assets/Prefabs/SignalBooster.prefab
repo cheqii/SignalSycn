@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 483102499799589937}
   - component: {fileID: 5359402921919927012}
   - component: {fileID: 3719447785548886157}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SignalBooster
   m_TagString: SignalBooster
   m_Icon: {fileID: 0}

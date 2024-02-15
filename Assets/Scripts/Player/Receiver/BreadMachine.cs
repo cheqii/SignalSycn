@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Player;
@@ -16,7 +17,7 @@ public class BreadMachine : ReceiverObject
     // Start is called before the first frame update
     void Start()
     {
-        originPos = transform.position;
+        originRotation = transform.eulerAngles;
         rb = GetComponent<Rigidbody2D>();
         pocket = FindObjectOfType<PocketSignal>();
         
@@ -27,11 +28,16 @@ public class BreadMachine : ReceiverObject
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(GameController.Instance.isReceiver && isSelected) GetInput();
         ShootBread();
     }
 
-    public override void Move()
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    protected override void Move()
     {
         if(GameController.Instance.isReceiver && isSelected) base.Move();
     }

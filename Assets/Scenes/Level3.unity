@@ -460,7 +460,7 @@ MonoBehaviour:
   - {fileID: 304549834}
   gameOverPage: {fileID: 808748775}
   isOver: 0
-  light: {fileID: 1039789675}
+  attachedLight: {fileID: 0}
 --- !u!4 &506454844
 Transform:
   m_ObjectHideFlags: 0
@@ -4347,8 +4347,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: shakeAmount
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
       propertyPath: signalRange
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: shakeDuration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9010780190404771546, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
       propertyPath: m_Material
@@ -4434,6 +4446,18 @@ PrefabInstance:
     - target: {fileID: 7824407786221663672, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210978663280773438, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: shakeAmount
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210978663280773438, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210978663280773438, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: shakeDuration
+      value: 0.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

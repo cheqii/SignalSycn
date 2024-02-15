@@ -23,22 +23,19 @@ namespace Player
         // Start is called before the first frame update
         void Start()
         {
-            originPos = transform.position;
+            originRotation = transform.eulerAngles;
             rb = GetComponent<Rigidbody2D>();
             pocket = FindObjectOfType<PocketSignal>();
         }
 
         private void Update()
         {
-            if(GameController.Instance.isReceiver && isSelected) Move();
+            if(GameController.Instance.isReceiver && isSelected) GetInput();
         }
 
-
-        private void OnCollisionEnter2D(Collision2D other)
+        private void FixedUpdate()
         {
-            if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("PocketSignal")
-                || other.gameObject.CompareTag("Receiver")) 
-                onGround = true;
+            Move();
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -107,5 +104,10 @@ namespace Player
         }
 
         #endregion
+
+        protected override void Move()
+        {
+            if(GameController.Instance.isReceiver && isSelected) base.Move();
+        }
     }
 }

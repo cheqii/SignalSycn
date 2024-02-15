@@ -46,9 +46,7 @@ namespace Player
         {
             pocketControl = true;
 
-            onGround = true;
-            
-            originPos = transform.position;
+            originRotation = transform.eulerAngles;
 
             rb = GetComponent<Rigidbody2D>();
 
@@ -61,25 +59,13 @@ namespace Player
 
         void Update()
         {
-            Move();
+            if (GameController.Instance.isPocket) GetInput();
             SwitchControlToReceiver();
         }
 
-        private void OnCollisionStay2D(Collision2D other)
+        private void FixedUpdate()
         {
-            if (other.gameObject.CompareTag("Ground")
-                || other.gameObject.CompareTag("Receiver"))
-            {
-                onGround = true;
-            }
-        }
-
-        private void OnCollisionExit2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Ground"))
-            {
-                onGround = false;
-            }
+            Move();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -138,7 +124,7 @@ namespace Player
 
         #region -Custom Function-
 
-        public override void Move()
+        protected override void Move()
         {
             if (GameController.Instance.isPocket) base.Move();
         }
