@@ -4,6 +4,7 @@ using Player;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -16,7 +17,9 @@ public class GameController : MonoBehaviour
     
     [Header("Pocket Signal")]
     public bool isPocket;
+    
     public bool isPocketDelay;
+    public float pocketDelay;
 
     [Header("Receiver")]
     public bool isReceiver;
@@ -31,8 +34,8 @@ public class GameController : MonoBehaviour
 
     [Header("GameOver Stuff")]
     public GameObject gameOverPage;
-    public bool isOver;
-    public Light2D light;
+    public bool isOver; 
+    public Light2D attachedLight;
 
     private void Awake()
     {
@@ -79,7 +82,6 @@ public class GameController : MonoBehaviour
     public IEnumerator PlayerControllerDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Debug.Log($"Player {delay} ????");
         isPocket = true;
         isReceiver = false;
         isPocketDelay = false;
@@ -91,6 +93,14 @@ public class GameController : MonoBehaviour
     //     isReceiver = false;
     // }
     
+    // Particle Method
+    public IEnumerator SetStopParticle(float time, ParticleSystem particle)
+    {
+        particle.Play();
+        yield return new WaitForSeconds(time);
+        particle.Stop();
+    }
+    
     #endregion
 
     public void GameIsOver()
@@ -98,9 +108,9 @@ public class GameController : MonoBehaviour
         if (pocket == null && !isOver)
         {
             isOver = true;
-            if (light != null)
+            if (attachedLight != null)
             {
-                Destroy(light);
+                Destroy(attachedLight);
             }
             gameOverPage.SetActive(true);
         }

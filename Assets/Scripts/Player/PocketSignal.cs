@@ -8,6 +8,7 @@ namespace Player
     {
         #region -Declared Variables-
 
+        [Header("Range")]
         [SerializeField] private float signalRange = 5f;
 
         public float SignalRange
@@ -43,10 +44,9 @@ namespace Player
 
         void Start()
         {
-
             pocketControl = true;
 
-            onGround = true;
+            originRotation = transform.eulerAngles;
 
             rb = GetComponent<Rigidbody2D>();
 
@@ -59,32 +59,20 @@ namespace Player
 
         void Update()
         {
-            Move();
+            if (GameController.Instance.isPocket) GetInput();
             SwitchControlToReceiver();
         }
 
-        private void OnCollisionStay2D(Collision2D other)
+        private void FixedUpdate()
         {
-            if (other.gameObject.CompareTag("Ground")
-                || other.gameObject.CompareTag("Receiver"))
-            {
-                onGround = true;
-            }
-        }
-
-        private void OnCollisionExit2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Ground"))
-            {
-                onGround = false;
-            }
+            Move();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Receiver"))
             {
-                Debug.Log("Trigger Receiver");
+                print("Trigger Receiver");
                 foundReceiver = true;
                 pocketControl = true;
 
@@ -109,16 +97,17 @@ namespace Player
         {
             if (other.CompareTag("Receiver"))
             {
-                receiverList.Remove(other.GetComponent<ReceiverObject>());
-                cam.targetPlayer.Remove(other.GetComponent<ReceiverObject>().transform);
-                other.GetComponent<SpriteRenderer>().color = normalColor;
+                var receiver = other.GetComponent<ReceiverObject>();
+                receiverList.Remove(receiver);
+                cam.targetPlayer.Remove(receiver.transform);
+                receiver.GetComponent<SpriteRenderer>().color = normalColor;
 
                 gameObject.GetComponent<SpriteRenderer>().color = controlColor;
                 // GameController.Instance.isPocket = true;
                 // GameController.Instance.isReceiver = false;
                 
                 GameController.Instance.isPocketDelay = true;
-                StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
+                StartCoroutine(GameController.Instance.PlayerControllerDelay(GameController.Instance.pocketDelay));
 
                 switchCount = 0;
                 tempCount = 0;
@@ -135,7 +124,7 @@ namespace Player
 
         #region -Custom Function-
 
-        public override void Move()
+        protected override void Move()
         {
             if (GameController.Instance.isPocket) base.Move();
         }
@@ -172,14 +161,15 @@ namespace Player
 
                 if (Input.GetKeyDown(KeyCode.Tab))
                 {
+                    if(receiverList.Count > 0) SoundManager.Instance.Play("Switch");
                     switch (pocketControl)
                     {
                         case true:
                         {
                             if (switchCount < receiverList.Count)
                             {
-                                Debug.Log("Switch Control to Receiver");
-                                SoundManager.Instance.Play("Switch");
+                                print("Switch Control to Receiver");
+                                // if(receiverList.Count > 0) SoundManager.Instance.Play("Switch");
                                 GameController.Instance.isPocket = false;
                                 GameController.Instance.isReceiver = true;
 
@@ -199,7 +189,7 @@ namespace Player
 
                             if (switchCount >= receiverList.Count)
                             {
-                                SoundManager.Instance.Play("Switch");
+                                // SoundManager.Instance.Play("Switch");
                                 switchCount = 0;
                                 pocketControl = false;
                             }
@@ -209,8 +199,8 @@ namespace Player
 
                         case false:
                         {
-                            Debug.Log("Check Return to Pocket Signal");
-                            SoundManager.Instance.Play("Switch");
+                            print("Check Return to Pocket Signal");
+                            // SoundManager.Instance.Play("Switch");
                             GameController.Instance.isPocket = true;
                             GameController.Instance.isReceiver = false;
                             try

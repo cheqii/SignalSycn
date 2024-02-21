@@ -449,6 +449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPocket: 0
+  isPocketDelay: 0
+  pocketDelay: 1.5
   isReceiver: 0
   maxLife: 3
   currentLife: 0
@@ -458,7 +460,7 @@ MonoBehaviour:
   - {fileID: 304549834}
   gameOverPage: {fileID: 808748775}
   isOver: 0
-  light: {fileID: 1039789675}
+  attachedLight: {fileID: 0}
 --- !u!4 &506454844
 Transform:
   m_ObjectHideFlags: 0
@@ -713,11 +715,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8648592418827171866, guid: d8937edab4de5594e99fa701e3393623, type: 3}
       propertyPath: m_Interpolate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8648592418827171866, guid: d8937edab4de5594e99fa701e3393623, type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -934,6 +936,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5afef8ffe3a559242ac91b6e46599f7c, type: 3}
+--- !u!1001 &978495333
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.2021885
+      objectReference: {fileID: 0}
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5104003
+      objectReference: {fileID: 0}
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2436.6904
+      objectReference: {fileID: 0}
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858247285031757540, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897407899361612604, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 66fee9aeab8dec645816f92ea49e0d9c, type: 3}
 --- !u!4 &1003498322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7125317303243292806, guid: 5afef8ffe3a559242ac91b6e46599f7c, type: 3}
@@ -1884,7 +1943,7 @@ GameObject:
   - component: {fileID: 1839773631}
   - component: {fileID: 1839773633}
   - component: {fileID: 1839773632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4345,8 +4404,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: shakeAmount
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
       propertyPath: signalRange
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: shakeDuration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9010780190404771546, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
       propertyPath: m_Material
@@ -4417,21 +4488,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone
       objectReference: {fileID: 0}
-    - target: {fileID: 3441465917790407763, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4402994479685747225, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_Radius
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4402994479685747225, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7824407786221663672, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.73
+      value: -0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210978663280773438, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: shakeAmount
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210978663280773438, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210978663280773438, guid: e0eed431e9b145342976837f5a64e69f, type: 3}
+      propertyPath: shakeDuration
+      value: 0.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4570,3 +4645,4 @@ SceneRoots:
   - {fileID: 506454844}
   - {fileID: 1925294190}
   - {fileID: 432443725}
+  - {fileID: 978495333}

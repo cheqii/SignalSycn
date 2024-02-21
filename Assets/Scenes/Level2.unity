@@ -332,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPocket: 0
   isPocketDelay: 0
+  pocketDelay: 1.5
   isReceiver: 0
   maxLife: 3
   currentLife: 0
@@ -341,7 +342,7 @@ MonoBehaviour:
   - {fileID: 304549834}
   gameOverPage: {fileID: 1190295017}
   isOver: 0
-  light: {fileID: 0}
+  attachedLight: {fileID: 0}
 --- !u!4 &506454844
 Transform:
   m_ObjectHideFlags: 0
@@ -357,11 +358,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &531437934 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5050108799989568422, guid: af662049173958b45a5de8b1a90c8565, type: 3}
-  m_PrefabInstance: {fileID: 2845958013088080070}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &596446878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -512,88 +508,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &729084995
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 729084997}
-  - component: {fileID: 729084996}
-  m_Layer: 0
-  m_Name: Light 2D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &729084996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729084995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 1
-  m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 1
-  m_Color: {r: 0.9150943, g: 0.87455064, b: 0.375534, a: 1}
-  m_Intensity: 10
-  m_LightVolumeIntensity: 1
-  m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
-  m_ShadowIntensity: 0.75
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 3.2
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
---- !u!4 &729084997
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729084995}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.37306917, w: 0.9278036}
-  m_LocalPosition: {x: 0.05000019, y: 0.23999977, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 531437934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &797140966
 GameObject:
@@ -1616,7 +1530,7 @@ GameObject:
   - component: {fileID: 1839773631}
   - component: {fileID: 1839773633}
   - component: {fileID: 1839773632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3442,7 +3356,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -3483,9 +3397,47 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1839773631}
+    m_ColliderPaths:
+    - - X: 120000000
+        Y: 90000000
+      - X: -120000000
+        Y: 90000000
+      - X: -120000000
+        Y: -30000000
+      - X: 120000000
+        Y: -30000000
+    - - X: -110000000
+        Y: 40000000
+      - X: -110000000
+        Y: 70000000
+      - X: 110000000
+        Y: 70000000
+      - X: 110000000
+        Y: 40000000
+    - - X: -110000000
+        Y: -10000000
+      - X: -110000000
+        Y: 20000000
+      - X: 110000000
+        Y: 20000000
+      - X: 110000000
+        Y: -10000000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: 11.99997, y: -3}
+      - {x: 11.99997, y: 9}
+      - {x: -12, y: 8.99997}
+      - {x: -11.99997, y: -3}
+    - - {x: 11, y: 4.0000296}
+      - {x: -11, y: 4.0000296}
+      - {x: -10.99997, y: 7}
+      - {x: 11, y: 6.9999704}
+    - - {x: 11, y: -0.9999706}
+      - {x: -11, y: -0.9999706}
+      - {x: -10.99997, y: 2}
+      - {x: 11, y: 1.9999707}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -3740,8 +3692,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: shakeAmount
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
       propertyPath: signalRange
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965424444965271921, guid: de5848259c99de348ac855cd6e9777b1, type: 3}
+      propertyPath: shakeDuration
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3863,10 +3827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5050108799989568422, guid: af662049173958b45a5de8b1a90c8565, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 729084997}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af662049173958b45a5de8b1a90c8565, type: 3}
 --- !u!1001 &3466881963262125129
@@ -3888,10 +3849,6 @@ PrefabInstance:
     - target: {fileID: 1721558744633260946, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
       propertyPath: m_Name
       value: NormalReceiver
-      objectReference: {fileID: 0}
-    - target: {fileID: 1721558744633260946, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5704200941005619656, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3932,6 +3889,34 @@ PrefabInstance:
     - target: {fileID: 5704200941005619656, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568743439493857895, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
+      propertyPath: boxSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568743439493857895, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
+      propertyPath: boxSize.y
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568743439493857895, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
+      propertyPath: shakeAmount
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568743439493857895, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
+      propertyPath: castDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568743439493857895, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
+      propertyPath: rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568743439493857895, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
+      propertyPath: shakeDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568743439493857895, guid: 42b207bb9c0104b4db8074f1b32803a2, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

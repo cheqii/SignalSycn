@@ -23,21 +23,19 @@ namespace Player
         // Start is called before the first frame update
         void Start()
         {
+            originRotation = transform.eulerAngles;
             rb = GetComponent<Rigidbody2D>();
             pocket = FindObjectOfType<PocketSignal>();
         }
 
         private void Update()
         {
-            if(GameController.Instance.isReceiver && isSelected) Move();
+            if(GameController.Instance.isReceiver && isSelected) GetInput();
         }
 
-
-        private void OnCollisionEnter2D(Collision2D other)
+        private void FixedUpdate()
         {
-            if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("PocketSignal")
-                || other.gameObject.CompareTag("Receiver")) 
-                onGround = true;
+            Move();
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -77,20 +75,20 @@ namespace Player
 
                 if (pocket.pocketControl) // left receiver in field is exit from fields
                 {
-                    // GameController.Instance.isPocket = true;
-                    GameController.Instance.isPocketDelay = true;
-                    StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
+                    GameController.Instance.isPocket = true;
+                    // GameController.Instance.isPocketDelay = true;
+                    // StartCoroutine(GameController.Instance.PlayerControllerDelay(GameController.Instance.pocketDelay));
                     if (!GameController.Instance.isReceiver) pocket.GetComponent<SpriteRenderer>().color = controlColor;
                 }
 
-                if (!isSelected)
+                if (!isSelected) // if object is not select but still in field
                 {
                     inField = false;
                     gameObject.GetComponent<SpriteRenderer>().color = normalColor;
                     gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
                 }
 
-                if(!isSelected && !pocket.pocketControl)
+                if(!isSelected && !pocket.pocketControl) // if controlling is out of field
                 {
                     // gameObject.GetComponent<SpriteRenderer>().color = inFieldColor;
                     // gameObject.GetComponent<SpriteRenderer>().sprite = whiteSprite;
@@ -98,7 +96,7 @@ namespace Player
                     pocket.pocketControl = true;
                     // GameController.Instance.isPocket = true;
                     GameController.Instance.isPocketDelay = true;
-                    StartCoroutine(GameController.Instance.PlayerControllerDelay(1.5f));
+                    StartCoroutine(GameController.Instance.PlayerControllerDelay(GameController.Instance.pocketDelay));
                     pocket.GetComponent<SpriteRenderer>().color = controlColor;
                 }
                 
@@ -106,5 +104,10 @@ namespace Player
         }
 
         #endregion
+
+        protected override void Move()
+        {
+            if(GameController.Instance.isReceiver && isSelected) base.Move();
+        }
     }
 }

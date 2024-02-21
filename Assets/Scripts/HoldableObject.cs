@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class HoldableObject : MonoBehaviour
 {
@@ -8,9 +6,7 @@ public class HoldableObject : MonoBehaviour
     [SerializeField] private GameObject droneObj;
 
     [SerializeField] private bool canRelease;
-
-    private bool checkDroneHold;
-
+    
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +18,26 @@ public class HoldableObject : MonoBehaviour
     void Update()
     {
         HoldObject();
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            if (droneObj != null)
+            {
+                var clawDetect = droneObj.GetComponentInParent<Drone>();
+                if (clawDetect.IsHolding)
+                    transform.position = droneObj.transform.position;
+                canRelease = false;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+            canRelease = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -47,21 +63,23 @@ public class HoldableObject : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (canHold)
-            {
-                SoundManager.Instance.Play("DroneGrab");
+            { 
+                // if drone is not holding (and will hold by space) or drone holding items and can release. play sound
+                if(!droneObj.GetComponentInParent<Drone>().IsHolding || canRelease)
+                    SoundManager.Instance.Play("DroneGrab");
                 if (!canRelease)
                 {
                     canRelease = true;
-                    // rb.gravityScale = 0;
-                    rb.isKinematic = true;
+                    rb.gravityScale = 0f;
+                    rb.mass = 0f;
                     droneObj.GetComponentInParent<Drone>().IsHolding = true;
                     gameObject.transform.SetParent(droneObj.transform);
                 }
                 else
                 {
                     canRelease = false;
-                    // rb.gravityScale = 1;
-                    rb.isKinematic = false;
+                    rb.gravityScale = 1f;
+                    rb.mass = 1f;
                     droneObj.GetComponentInParent<Drone>().IsHolding = false;
                     gameObject.transform.SetParent(null);
                 }
@@ -70,9 +88,9 @@ public class HoldableObject : MonoBehaviour
 
         if (!droneObj.GetComponentInParent<Drone>().IsHolding || !droneObj.GetComponentInParent<Drone>().isSelected)
         {
-            
             canRelease = false;
-            rb.isKinematic = false;
+            rb.gravityScale = 1f;
+            rb.mass = 1f;
             droneObj.GetComponentInParent<Drone>().IsHolding = false;
             gameObject.transform.SetParent(null);
         }
