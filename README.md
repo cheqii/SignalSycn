@@ -1,2 +1,2 @@
-# NewSkillJam-2024
-This repos is created for game jam new year new skill 2024, with a theme 'building connection'
+# SignalSync
+The 2D puzzle platformer game the the project from a game jam 2024 "New year New Skill 2024" with the theme 'Building Connection'.
